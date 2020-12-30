@@ -16,7 +16,7 @@ Building requires PureBasic Compiler and test under Windows 10.
 
 ## Example
 
-Server
+Rep Server
 
 ```purebasic
 IncludeFile "../Core/ZeroMQ.pbi"
@@ -63,7 +63,7 @@ If hLibrary
 EndIf
 ```
 
-Client
+Req Client
 
 ```purebasic
 IncludeFile "../Core/ZeroMQ.pbi"
