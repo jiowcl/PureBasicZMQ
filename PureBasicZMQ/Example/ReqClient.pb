@@ -1,4 +1,4 @@
-﻿;--------------------------------------------------------------------------------------------
+;--------------------------------------------------------------------------------------------
 ;  Copyright (c) Ji-Feng Tsai. All rights reserved.
 ;  Code released under the MIT license.
 ;--------------------------------------------------------------------------------------------
@@ -41,12 +41,12 @@ If hLibrary
   ZmqDllClose(hLibrary)
 EndIf
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 28
-; FirstLine = 2
+; CursorPosition = 9
 ; EnableXP
-; Executable = Client.exe
+; Executable = ReqClient.exe
 ; CurrentDirectory = ..\
 ; IncludeVersionInfo
 ; VersionField2 = Inwazy Technology
 ; VersionField3 = PureBasicZMQ
+; VersionField9 = Ji-Feng Tsai
 ; VersionField13 = jiowcl@gmail.com
