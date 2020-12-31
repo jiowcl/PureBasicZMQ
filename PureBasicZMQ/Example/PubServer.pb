@@ -6,7 +6,7 @@
 IncludeFile "../Core/ZeroMQ.pbi"
 
 Global lpszLibZmqDll.s = "libzmq.dll"
-Global lpszServerAddr.s = "tcp://localhost:1700"
+Global lpszServerAddr.s = "tcp://*:1689"
 
 Global hLibrary = ZmqDllOpen(lpszLibZmqDll)
 
@@ -14,39 +14,42 @@ If hLibrary
   OpenConsole()
   
   Context.i = ZmqCtxNew(hLibrary)
-  Socket.i = ZmqSocket(hLibrary, Context, #ZMQ_REQ)
-  Rc.i = ZmqConnect(hLibrary, Socket, lpszServerAddr)
+  Socket.i = ZmqSocket(hLibrary, Context, #ZMQ_PUB)
+  Rc.i = ZmqBind(hLibrary, Socket, lpszServerAddr)
   
-  PrintN("Connect to Server: " + lpszServerAddr)
+  PrintN("Bind an IP address: " + lpszServerAddr)
   
-  For i = 0 To 10 
+  While 1
     *lpszBuffer = AllocateMemory(32)
-    lpszMessage.s = "From Client"
+    lpszMessage.s = "Bid:" + Random(9000, 1000) + ",Ask:" + Random(9000, 1000)
     
-    ZmqSend(hLibrary, Socket, lpszMessage, Len(lpszMessage), 0)
     ZmqRecv(hLibrary, Socket, *lpszBuffer, MemorySize(*lpszBuffer), 0)
     
-    PrintN("Reply From Server: ")
-    PrintN( PeekS(*lpszBuffer, -1, #PB_UTF8) )
+    Delay(10)
+    
+    lpszReturnMessage.s = PeekS(*lpszBuffer, -1, #PB_UTF8)
+    
+    If lpszReturnMessage <> ""
+      PrintN("Received: ")
+      PrintN(lpszReturnMessage)
+    EndIf
+    
+    ZmqSend(hLibrary, Socket, lpszMessage, Len(lpszMessage), 0)
     
     FreeMemory(*lpszBuffer)
-  Next 
+  Wend
   
   ZmqClose(hLibrary, Socket)
   ZmqCtxShutdown(hLibrary, Socket)
   
-  Input()
   CloseConsole()
   
   ZmqDllClose(hLibrary)
 EndIf
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 9
+; CursorPosition = 28
 ; EnableXP
-; Executable = ReqClient.exe
-; CurrentDirectory = ..\
+; Executable = PubServer.exe
+; CurrentDirectory = ../
 ; IncludeVersionInfo
 ; VersionField2 = Inwazy Technology
-; VersionField3 = PureBasicZMQ
-; VersionField9 = Ji-Feng Tsai
-; VersionField13 = jiowcl@gmail.com
