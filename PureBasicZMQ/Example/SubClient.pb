@@ -21,7 +21,17 @@ If hLibrary
   
   ZmqSetsockopt(hLibrary, Socket, #ZMQ_SUBSCRIBE, lpszSubscribe, Len(lpszSubscribe))
   
-  For i = 0 To 10 
+;   For i = 0 To 10 
+;     *lpszBuffer = AllocateMemory(32)
+;     
+;     ZmqRecv(hLibrary, Socket, *lpszBuffer, MemorySize(*lpszBuffer), 0)
+;     
+;     PrintN( PeekS(*lpszBuffer, -1, #PB_UTF8) )
+;     
+;     FreeMemory(*lpszBuffer)
+;   Next
+  
+  While 1
     *lpszBuffer = AllocateMemory(32)
     
     ZmqRecv(hLibrary, Socket, *lpszBuffer, MemorySize(*lpszBuffer), 0)
@@ -29,7 +39,9 @@ If hLibrary
     PrintN( PeekS(*lpszBuffer, -1, #PB_UTF8) )
     
     FreeMemory(*lpszBuffer)
-  Next
+    
+    Delay(10)
+  Wend   
   
   ZmqClose(hLibrary, Socket)
   ZmqCtxShutdown(hLibrary, Socket)
@@ -40,7 +52,7 @@ If hLibrary
   ZmqDllClose(hLibrary)
 EndIf
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 27
+; CursorPosition = 34
 ; EnableXP
 ; Executable = SubClient.exe
 ; CurrentDirectory = ../
