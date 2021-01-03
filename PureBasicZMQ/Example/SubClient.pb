@@ -58,3 +58,6 @@ EndIf
 ; CurrentDirectory = ../
 ; IncludeVersionInfo
 ; VersionField2 = Inwazy Technology
+; VersionField3 = PureBasicZMQ
+; VersionField9 = Ji-Feng Tsai
+; VersionField13 = jiowcl@gmail.com

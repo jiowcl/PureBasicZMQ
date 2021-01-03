@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://www.purebasic.com/namespace" version="1.0" creator="PureBasic 5.72 (Windows - x86)">
+  <section name="config">
+    <options closefiles="1" openmode="0" name="PureBasicZMQ Examples"/>
+  </section>
+  <section name="data">
+    <explorer view="Example\" pattern="0"/>
+    <log show="1"/>
+    <lastopen date="2021-01-03 15:55" user="Fred" host="DESKTOP-ATREA"/>
+  </section>
+  <section name="files">
+    <file name="Example\PubServer.pb">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
+      <fingerprint md5="79c0b80fb4b7b67e56df66a79252229c"/>
+    </file>
+    <file name="Example\RepServer.pb">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="++"/>
+      <fingerprint md5="065213ccfc9cfc4a1576af979cb83061"/>
+    </file>
+    <file name="Example\ReqClient.pb">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="++"/>
+      <fingerprint md5="6565fbbdab23ec044ad17b7759f509f0"/>
+    </file>
+    <file name="Example\SubClient.pb">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="++"/>
+      <fingerprint md5="5954934fd8dea49be88dc93793cb4087"/>
+    </file>
+  </section>
+  <section name="targets">
+    <target name="Default Target" enabled="1" default="1">
+      <inputfile value=""/>
+      <outputfile value=""/>
+      <options xpskin="1" debug="1"/>
+      <versioninfo enable="1">
+        <field2 value="Inwazy Technology"/>
+        <field3 value="PureBasicZMQ"/>
+        <field4 value="1.0.0"/>
+        <field5 value="1.0.0"/>
+        <field9 value="Ji-Feng Tsai"/>
+        <field13 value="jiowcl@gmail.com"/>
+      </versioninfo>
+    </target>
+  </section>
+</project>
