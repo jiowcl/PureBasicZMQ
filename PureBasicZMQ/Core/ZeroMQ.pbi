@@ -121,7 +121,7 @@ PrototypeC.i ZmqCloseFunc(socket.i)
 
 ; Function Declare
 Declare.i ZmqDllOpen(lpszDllPath.s)
-Declare.i ZmqDllClose(hModule.i)
+Declare.i ZmqDllClose(dllInstance.i)
 
 ; <summary>
 ; ZmqDllOpen
@@ -398,8 +398,8 @@ Procedure.i ZmqClose(dllInstance.i, socket.i)
 EndProcedure
 
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 361
-; FirstLine = 328
+; CursorPosition = 123
+; FirstLine = 117
 ; Folding = ---
 ; EnableXP
 ; IncludeVersionInfo
