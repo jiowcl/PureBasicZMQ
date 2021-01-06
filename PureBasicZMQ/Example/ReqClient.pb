@@ -33,7 +33,7 @@ If hLibrary
   Next 
   
   ZmqClose(hLibrary, Socket)
-  ZmqCtxShutdown(hLibrary, Socket)
+  ZmqCtxShutdown(hLibrary, Context)
   
   Input()
   CloseConsole()
