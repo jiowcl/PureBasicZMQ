@@ -17,92 +17,101 @@ Module features require PureBasic 5.20 and above.
 
 ## Example
 
-Rep Server
+Publisher Server
 
 ```purebasic
-IncludeFile "../Core/ZeroMQ.pbi"
+IncludeFile "../../Core/Enums.pbi"
+IncludeFile "../../Core/ZeroMQWrapper.pbi"
+
+UseModule ZeroMQWrapper
 
 Global lpszLibZmqDll.s = "libzmq.dll"
-Global lpszServerAddr.s = "tcp://*:1700"
+Global lpszServerAddr.s = "tcp://*:1689"
 
-Global hLibrary = ZmqDllOpen(lpszLibZmqDll)
-
-If hLibrary
+If DllOpen(lpszLibZmqDll)
   OpenConsole()
   
-  Context.i = ZmqCtxNew(hLibrary)
-  Socket.i = ZmqSocket(hLibrary, Context, #ZMQ_REP)
-  Rc.i = ZmqBind(hLibrary, Socket, lpszServerAddr)
+  Context.i = ZmqContext::New()
+  Socket.i = ZmqSocket::Socket(Context, #ZMQ_PUB)
+  Rc.i = ZmqSocket::Bind(Socket, lpszServerAddr)
   
   PrintN("Bind an IP address: " + lpszServerAddr)
   
-  lTotal.l = 0
-  
   While 1
     *lpszBuffer = AllocateMemory(32)
-    lTotal = lTotal + 1
-    lpszMessage.s = "Hi " + lTotal
+    lpszTopic.s = "quotes"
+    lpszMessage.s = "Bid:" + Random(9000, 1000) + ",Ask:" + Random(9000, 1000)
     
-    ZmqRecv(hLibrary, Socket, *lpszBuffer, MemorySize(*lpszBuffer), 0)
+    ZmqSocket::Recv(Socket, *lpszBuffer, MemorySize(*lpszBuffer), 0)
     
     Delay(10)
     
-    PrintN("Received: ")
-    PrintN( PeekS(*lpszBuffer, -1, #PB_UTF8) )
+    lpszReturnMessage.s = PeekS(*lpszBuffer, -1, #PB_UTF8)
     
-    ZmqSend(hLibrary, Socket, lpszMessage, Len(lpszMessage), 0)
+    If lpszReturnMessage <> ""
+      PrintN("Received: ")
+      PrintN(lpszReturnMessage)
+    EndIf
+    
+    ZmqSocket::Send(Socket, lpszTopic, Len(lpszTopic), #ZMQ_SNDMORE)
+    ZmqSocket::Send(Socket, lpszMessage, Len(lpszMessage), 0)
     
     FreeMemory(*lpszBuffer)
   Wend
   
-  ZmqClose(hLibrary, Socket)
-  ZmqCtxShutdown(hLibrary, Context)
+  ZmqSocket::Close(Socket)
+  ZmqContext::Shutdown(Context)
   
   CloseConsole()
   
-  ZmqDllClose(hLibrary)
+  DllClose()
 EndIf
 ```
 
-Req Client
+Subscribe Client
 
 ```purebasic
-IncludeFile "../Core/ZeroMQ.pbi"
+IncludeFile "../../Core/Enums.pbi"
+IncludeFile "../../Core/ZeroMQWrapper.pbi"
+
+UseModule ZeroMQWrapper
 
 Global lpszLibZmqDll.s = "libzmq.dll"
-Global lpszServerAddr.s = "tcp://localhost:1700"
+Global lpszServerAddr.s = "tcp://localhost:1689"
 
-Global hLibrary = ZmqDllOpen(lpszLibZmqDll)
-
-If hLibrary
+If DllOpen(lpszLibZmqDll)
   OpenConsole()
   
-  Context.i = ZmqCtxNew(hLibrary)
-  Socket.i = ZmqSocket(hLibrary, Context, #ZMQ_REQ)
-  Rc.i = ZmqConnect(hLibrary, Socket, lpszServerAddr)
+  Context.i = ZmqContext::New()
+  Socket.i = ZmqSocket::Socket(Context, #ZMQ_SUB)
+  Rc.i = ZmqSocket::Connect(Socket, lpszServerAddr)
   
-  PrintN("Connect to Server: " + lpszServerAddr)
+  lpszSubscribe.s = "quotes"
   
-  For i = 0 To 10 
+  ZmqSocket::Setsockopt(Socket, #ZMQ_SUBSCRIBE, lpszSubscribe, Len(lpszSubscribe))
+  
+  While 1
+    *lpszTopicBuffer = AllocateMemory(32)
     *lpszBuffer = AllocateMemory(32)
-    lpszMessage.s = "From Client"
     
-    ZmqSend(hLibrary, Socket, lpszMessage, Len(lpszMessage), 0)
-    ZmqRecv(hLibrary, Socket, *lpszBuffer, MemorySize(*lpszBuffer), 0)
+    ZmqSocket::Recv(Socket, *lpszTopicBuffer, MemorySize(*lpszTopicBuffer), 0)
+    ZmqSocket::Recv(Socket, *lpszBuffer, MemorySize(*lpszBuffer), 0)
     
-    PrintN("Reply From Server: ")
     PrintN( PeekS(*lpszBuffer, -1, #PB_UTF8) )
     
+    FreeMemory(*lpszTopicBuffer)
     FreeMemory(*lpszBuffer)
-  Next 
+    
+    Delay(10)
+  Wend   
   
-  ZmqClose(hLibrary, Socket)
-  ZmqCtxShutdown(hLibrary, Context)
+  ZmqSocket::Close(Socket)
+  ZmqContext::Shutdown(Context)
   
   Input()
   CloseConsole()
   
-  ZmqDllClose(hLibrary)
+  DllClose()
 EndIf
 ```
 
