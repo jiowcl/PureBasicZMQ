@@ -21,6 +21,7 @@ If hLibrary
   
   While 1
     *lpszBuffer = AllocateMemory(32)
+    lpszTopic.s = "quotes"
     lpszMessage.s = "Bid:" + Random(9000, 1000) + ",Ask:" + Random(9000, 1000)
     
     ZmqRecv(hLibrary, Socket, *lpszBuffer, MemorySize(*lpszBuffer), 0)
@@ -34,6 +35,7 @@ If hLibrary
       PrintN(lpszReturnMessage)
     EndIf
     
+    ZmqSend(hLibrary, Socket, lpszTopic, Len(lpszTopic), #ZMQ_SNDMORE)
     ZmqSend(hLibrary, Socket, lpszMessage, Len(lpszMessage), 0)
     
     FreeMemory(*lpszBuffer)
