@@ -17,7 +17,7 @@ If hLibrary
   Socket.i = ZmqSocket(hLibrary, Context, #ZMQ_SUB)
   Rc.i = ZmqConnect(hLibrary, Socket, lpszServerAddr)
   
-  lpszSubscribe.s = ""
+  lpszSubscribe.s = "quotes"
   
   ZmqSetsockopt(hLibrary, Socket, #ZMQ_SUBSCRIBE, lpszSubscribe, Len(lpszSubscribe))
   
@@ -32,12 +32,15 @@ If hLibrary
 ;   Next
   
   While 1
+    *lpszTopicBuffer = AllocateMemory(32)
     *lpszBuffer = AllocateMemory(32)
     
+    ZmqRecv(hLibrary, Socket, *lpszTopicBuffer, MemorySize(*lpszTopicBuffer), 0)
     ZmqRecv(hLibrary, Socket, *lpszBuffer, MemorySize(*lpszBuffer), 0)
     
     PrintN( PeekS(*lpszBuffer, -1, #PB_UTF8) )
     
+    FreeMemory(*lpszTopicBuffer)
     FreeMemory(*lpszBuffer)
     
     Delay(10)
