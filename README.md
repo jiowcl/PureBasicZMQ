@@ -55,7 +55,7 @@ If hLibrary
   Wend
   
   ZmqClose(hLibrary, Socket)
-  ZmqCtxShutdown(hLibrary, Socket)
+  ZmqCtxShutdown(hLibrary, Context)
   
   CloseConsole()
   
@@ -96,7 +96,7 @@ If hLibrary
   Next 
   
   ZmqClose(hLibrary, Socket)
-  ZmqCtxShutdown(hLibrary, Socket)
+  ZmqCtxShutdown(hLibrary, Context)
   
   Input()
   CloseConsole()
