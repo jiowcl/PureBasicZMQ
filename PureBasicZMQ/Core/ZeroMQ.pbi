@@ -95,6 +95,24 @@
 #ZMQ_GSSAPI_SERVICE_PRINCIPAL_NAMETYPE = 91
 #ZMQ_BINDTODEVICE                      = 92
 
+; Context Options
+#ZMQ_IO_THREADS                 = 1
+#ZMQ_MAX_SOCKETS                = 2
+#ZMQ_SOCKET_LIMIT               = 3
+#ZMQ_THREAD_PRIORITY            = 3
+#ZMQ_THREAD_SCHED_POLICY        = 4
+#ZMQ_MAX_MSGSZ                  = 5
+#ZMQ_MSG_T_SIZE                 = 6
+#ZMQ_THREAD_AFFINITY_CPU_ADD    = 7
+#ZMQ_THREAD_AFFINITY_CPU_REMOVE = 8
+#ZMQ_THREAD_NAME_PREFIX         = 9
+
+; Default for New Contexts
+#ZMQ_IO_THREADS_DFLT          = 1
+#ZMQ_MAX_SOCKETS_DFLT         = 1023
+#ZMQ_THREAD_PRIORITY_DFLT     = -1
+#ZMQ_THREAD_SCHED_POLICY_DFLT = -1
+
 ; Message Options
 #ZMQ_MORE   = 1
 #ZMQ_SHARED = 3
@@ -107,6 +125,8 @@
 PrototypeC.i ZmqCtxNewFunc()
 PrototypeC.i ZmqCtxTermFunc(context.i)
 PrototypeC.i ZmqCtxShutdownFunc(context.i)
+PrototypeC.i ZmqCtxSetFunc(context.i, option.i, optval.i)
+PrototypeC.i ZmqCtxGetFunc(context.i, option.i)
 
 PrototypeC.i ZmqSocketFunc(s.i, type.i)
 PrototypeC.i ZmqBindFunc(socket.i, addr.p-Ascii)
@@ -195,6 +215,45 @@ Procedure.i ZmqCtxShutdown(dllInstance.i, context.i)
   If IsLibrary(dllInstance)
     pFuncCall = GetFunction(dllInstance, "zmq_ctx_shutdown")
     lResult = pFuncCall(context)
+  EndIf
+  
+  ProcedureReturn lResult
+EndProcedure
+
+; <summary>
+; ZmqCtxSet
+; <summary>
+; <param name="dllInstance"></param>
+; <param name="context"></param>
+; <param name="option"></param>
+; <param name="optval"></param>
+; <returns>Returns integer.</returns>
+Procedure.i ZmqCtxSet(dllInstance.i, context.i, option.i, optval.i)
+  Protected.i lResult
+  Protected.ZmqCtxSetFunc pFuncCall
+  
+  If IsLibrary(dllInstance)
+    pFuncCall = GetFunction(dllInstance, "zmq_ctx_set")
+    lResult = pFuncCall(context, option, optval)
+  EndIf
+  
+  ProcedureReturn lResult
+EndProcedure
+
+; <summary>
+; ZmqCtxGet
+; <summary>
+; <param name="dllInstance"></param>
+; <param name="context"></param>
+; <param name="option"></param>
+; <returns>Returns integer.</returns>
+Procedure.i ZmqCtxGet(dllInstance.i, context.i, option.i)
+  Protected.i lResult
+  Protected.ZmqCtxGetFunc pFuncCall
+  
+  If IsLibrary(dllInstance)
+    pFuncCall = GetFunction(dllInstance, "zmq_ctx_get")
+    lResult = pFuncCall(context, option)
   EndIf
   
   ProcedureReturn lResult
