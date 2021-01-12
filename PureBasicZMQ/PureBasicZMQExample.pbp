@@ -7,25 +7,9 @@
   <section name="data">
     <explorer view="Example\" pattern="0"/>
     <log show="1"/>
-    <lastopen date="2021-01-06 20:25" user="Fred" host="DESKTOP-ATREA"/>
+    <lastopen date="2021-01-12 23:22" user="Fred" host="DESKTOP-ATREA"/>
   </section>
   <section name="files">
-    <file name="Example\PubServer.pb">
-      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
-      <fingerprint md5="7818c0c9a85de93ae1c94e3d8d17044c"/>
-    </file>
-    <file name="Example\RepServer.pb">
-      <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="++"/>
-      <fingerprint md5="4857d2f38f9ac707814f3dbdf72d72e1"/>
-    </file>
-    <file name="Example\ReqClient.pb">
-      <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="++"/>
-      <fingerprint md5="acf52e9e8846aa4fa0be92f18e203499"/>
-    </file>
-    <file name="Example\SubClient.pb">
-      <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="++"/>
-      <fingerprint md5="415b4744409c3d196a0e24e3d481b76a"/>
-    </file>
     <file name="Example\Module\PubServer.pb">
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="+++"/>
       <fingerprint md5="2e38850450547507c7da811ef1183a8e"/>
@@ -42,11 +26,130 @@
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="+++"/>
       <fingerprint md5="f89fd83f9b213fca41faca99a2f5db77"/>
     </file>
+    <file name="Example\PubServer.pb">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="++"/>
+      <fingerprint md5="66b8792a3428617e1f0e680d6b0ac132"/>
+    </file>
+    <file name="Example\RepServer.pb">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="++"/>
+      <fingerprint md5="4857d2f38f9ac707814f3dbdf72d72e1"/>
+    </file>
+    <file name="Example\ReqClient.pb">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="++"/>
+      <fingerprint md5="acf52e9e8846aa4fa0be92f18e203499"/>
+    </file>
+    <file name="Example\SubClient.pb">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="++"/>
+      <fingerprint md5="56346b4a216e18966d1cb58dd3656de0"/>
+    </file>
+    <file name="Example\Zmq.pb">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
+      <fingerprint md5="e306fe04a4109ef91005fb1319564cfa"/>
+    </file>
   </section>
   <section name="targets">
-    <target name="Default Target" enabled="1" default="1">
+    <target name="ModulePubServer" enabled="1" default="1">
       <inputfile value="Example\Module\PubServer.pb"/>
       <outputfile value="ModulePubServer.exe"/>
+      <executable value="ModulePubServer.exe"/>
+      <options xpskin="1" debug="1"/>
+      <versioninfo enable="1">
+        <field2 value="Inwazy Technology"/>
+        <field3 value="PureBasicZMQ"/>
+        <field4 value="1.0.0"/>
+        <field5 value="1.0.0"/>
+        <field9 value="Ji-Feng Tsai"/>
+        <field13 value="jiowcl@gmail.com"/>
+      </versioninfo>
+    </target>
+    <target name="ModuleSubClient" enabled="1" default="0">
+      <inputfile value="Example\Module\SubClient.pb"/>
+      <outputfile value="ModuleSubClient.exe"/>
+      <executable value="ModuleSubClient.exe"/>
+      <options xpskin="1" debug="1"/>
+      <versioninfo enable="1">
+        <field2 value="Inwazy Technology"/>
+        <field3 value="PureBasicZMQ"/>
+        <field4 value="1.0.0"/>
+        <field5 value="1.0.0"/>
+        <field9 value="Ji-Feng Tsai"/>
+        <field13 value="jiowcl@gmail.com"/>
+      </versioninfo>
+    </target>
+    <target name="ModuleRepServer" enabled="1" default="0">
+      <inputfile value="Example\Module\RepServer.pb"/>
+      <outputfile value="ModuleRepServer.exe"/>
+      <executable value="ModuleRepServer.exe"/>
+      <options xpskin="1" debug="1"/>
+      <versioninfo enable="1">
+        <field2 value="Inwazy Technology"/>
+        <field3 value="PureBasicZMQ"/>
+        <field4 value="1.0.0"/>
+        <field5 value="1.0.0"/>
+        <field9 value="Ji-Feng Tsai"/>
+        <field13 value="jiowcl@gmail.com"/>
+      </versioninfo>
+    </target>
+    <target name="ModuleReqClient" enabled="1" default="0">
+      <inputfile value="Example\Module\ReqClient.pb"/>
+      <outputfile value="ModuleReqClient.exe"/>
+      <executable value="ModuleReqClient.exe"/>
+      <options xpskin="1" debug="1"/>
+      <versioninfo enable="1">
+        <field2 value="Inwazy Technology"/>
+        <field3 value="PureBasicZMQ"/>
+        <field4 value="1.0.0"/>
+        <field5 value="1.0.0"/>
+        <field9 value="Ji-Feng Tsai"/>
+        <field13 value="jiowcl@gmail.com"/>
+      </versioninfo>
+    </target>
+    <target name="PubServer" enabled="1" default="0">
+      <inputfile value="Example\PubServer.pb"/>
+      <outputfile value="PubServer.exe"/>
+      <executable value="PubServer.exe"/>
+      <options xpskin="1" debug="1"/>
+      <versioninfo enable="1">
+        <field2 value="Inwazy Technology"/>
+        <field3 value="PureBasicZMQ"/>
+        <field4 value="1.0.0"/>
+        <field5 value="1.0.0"/>
+        <field9 value="Ji-Feng Tsai"/>
+        <field13 value="jiowcl@gmail.com"/>
+      </versioninfo>
+    </target>
+    <target name="SubClient" enabled="1" default="0">
+      <inputfile value="Example\SubClient.pb"/>
+      <outputfile value="SubClient.exe"/>
+      <executable value="SubClient.exe"/>
+      <options xpskin="1" debug="1"/>
+      <versioninfo enable="1">
+        <field2 value="Inwazy Technology"/>
+        <field3 value="PureBasicZMQ"/>
+        <field4 value="1.0.0"/>
+        <field5 value="1.0.0"/>
+        <field9 value="Ji-Feng Tsai"/>
+        <field13 value="jiowcl@gmail.com"/>
+      </versioninfo>
+    </target>
+    <target name="RepServer" enabled="1" default="0">
+      <inputfile value="Example\RepServer.pb"/>
+      <outputfile value="RepServer.exe"/>
+      <executable value="RepServer.exe"/>
+      <options xpskin="1" debug="1"/>
+      <versioninfo enable="1">
+        <field2 value="Inwazy Technology"/>
+        <field3 value="PureBasicZMQ"/>
+        <field4 value="1.0.0"/>
+        <field5 value="1.0.0"/>
+        <field9 value="Ji-Feng Tsai"/>
+        <field13 value="jiowcl@gmail.com"/>
+      </versioninfo>
+    </target>
+    <target name="ReqClient" enabled="1" default="0">
+      <inputfile value="Example\ReqClient.pb"/>
+      <outputfile value="ReqClient.exe"/>
+      <executable value="ReqClient.exe"/>
       <options xpskin="1" debug="1"/>
       <versioninfo enable="1">
         <field2 value="Inwazy Technology"/>

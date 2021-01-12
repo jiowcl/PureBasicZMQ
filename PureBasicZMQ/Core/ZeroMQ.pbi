@@ -5,12 +5,13 @@
 
 XIncludeFile "LibDll.pbi"
 XIncludeFile "Enums.pbi"
+XIncludeFile "Runtime.pbi"
 XIncludeFile "Context.pbi"
 XIncludeFile "Socket.pbi"
 
 ; TODO
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 10
+; CursorPosition = 11
 ; EnableXP
 ; IncludeVersionInfo
 ; VersionField2 = Inwazy Technology

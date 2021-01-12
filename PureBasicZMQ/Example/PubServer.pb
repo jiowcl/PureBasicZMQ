@@ -49,7 +49,7 @@ If hLibrary
   ZmqDllClose(hLibrary)
 EndIf
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 28
+; CursorPosition = 49
 ; EnableXP
 ; Executable = PubServer.exe
 ; CurrentDirectory = ../

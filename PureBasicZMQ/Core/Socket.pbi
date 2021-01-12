@@ -83,7 +83,7 @@ EndProcedure
 ; <param name="len"></param>
 ; <param name="flags"></param>
 ; <returns>Returns integer.</returns>
-Procedure.i ZmqRecv(dllInstance.i, socket.i, *buf, len.i, flags.i)
+Procedure.i ZmqRecv(dllInstance.i, socket.i, *buf.String, len.i, flags.i)
   Protected.i lResult
   Protected.ZmqRecvFunc pFuncCall
   
@@ -214,7 +214,9 @@ Procedure.i ZmqClose(dllInstance.i, socket.i)
   ProcedureReturn lResult
 EndProcedure
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 10
+; CursorPosition = 85
+; FirstLine = 70
+; Folding = --
 ; EnableXP
 ; IncludeVersionInfo
 ; VersionField2 = Inwazy Technology
