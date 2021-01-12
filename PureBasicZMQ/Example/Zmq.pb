@@ -27,9 +27,9 @@ If hLibrary
   ZmqDllClose(hLibrary)
 EndIf
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 22
+; CursorPosition = 25
 ; EnableXP
-; Executable = SubClient.exe
+; Executable = Zmq.exe
 ; CurrentDirectory = ../
 ; IncludeVersionInfo
 ; VersionField2 = Inwazy Technology
