@@ -3,6 +3,8 @@
 ;  Code released under the MIT license.
 ;--------------------------------------------------------------------------------------------
 
+EnableExplicit
+
 IncludeFile "../../Core/Enums.pbi"
 IncludeFile "../../Core/ZeroMQWrapper.pbi"
 
@@ -18,9 +20,9 @@ If DllOpen(lpszLibZmqDll)
   InitNetwork()
   
   Print("Enter OpenWeatherMap API Key and Press Return: ")
-  WeatherApiKey.s = Input()
+  Define WeatherApiKey.s = Input()
   
-  HttpRequest = HTTPRequest(#PB_HTTP_Get, "https://api.openweathermap.org/data/2.5/weather?q=Taiwan&appid=" + WeatherApiKey)
+  Define HttpRequest = HTTPRequest(#PB_HTTP_Get, "https://api.openweathermap.org/data/2.5/weather?q=Taiwan&appid=" + WeatherApiKey)
   
   If HttpRequest
     lpszJsonWeather = HTTPInfo(HTTPRequest, #PB_HTTP_Response)
@@ -28,22 +30,22 @@ If DllOpen(lpszLibZmqDll)
     FinishHTTP(HTTPRequest)
   EndIf
   
-  Context.i = ZmqContext::New()
-  Socket.i = ZmqSocket::Socket(Context, #ZMQ_PUB)
-  Rc.i = ZmqSocket::Bind(Socket, lpszServerAddr)
+  Define Context.i = ZmqContext::New()
+  Define Socket.i = ZmqSocket::Socket(Context, #ZMQ_PUB)
+  Define Rc.i = ZmqSocket::Bind(Socket, lpszServerAddr)
   
   PrintN("Bind an IP address: " + lpszServerAddr)
   
   While 1
-    *lpszBuffer = AllocateMemory(32)
-    lpszTopic.s = "weather"
-    lpszMessage.s = lpszJsonWeather
+    Define *lpszBuffer = AllocateMemory(32)
+    Define lpszTopic.s = "weather"
+    Define lpszMessage.s = lpszJsonWeather
     
     ZmqSocket::Recv(Socket, *lpszBuffer, MemorySize(*lpszBuffer), 0)
     
     Delay(10)
     
-    lpszReturnMessage.s = PeekS(*lpszBuffer, -1, #PB_UTF8)
+    Define lpszReturnMessage.s = PeekS(*lpszBuffer, -1, #PB_UTF8)
     
     If lpszReturnMessage <> ""
       PrintN("Received: ")
@@ -64,10 +66,9 @@ If DllOpen(lpszLibZmqDll)
   DllClose()
 EndIf
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 39
-; FirstLine = 9
+; CursorPosition = 47
 ; EnableXP
-; Executable = ModuleWeatherPubServer.exe
+; Executable = ..\..\ModuleWeatherPubServer.exe
 ; CurrentDirectory = ..\..\
 ; IncludeVersionInfo
 ; VersionField2 = Inwazy Technology

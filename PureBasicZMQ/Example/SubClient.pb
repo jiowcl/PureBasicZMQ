@@ -3,26 +3,30 @@
 ;  Code released under the MIT license.
 ;--------------------------------------------------------------------------------------------
 
+EnableExplicit
+
 IncludeFile "../Core/ZeroMQ.pbi"
 
 Global lpszLibZmqDll.s = "libzmq.dll"
 Global lpszServerAddr.s = "tcp://localhost:1689"
 
-Global hLibrary = ZmqDllOpen(lpszLibZmqDll)
+Global hLibrary.i = ZmqDllOpen(lpszLibZmqDll)
 
 If hLibrary
   OpenConsole()
   
-  Context.i = ZmqCtxNew(hLibrary)
-  Socket.i = ZmqSocket(hLibrary, Context, #ZMQ_SUB)
-  Rc.i = ZmqConnect(hLibrary, Socket, lpszServerAddr)
+  Define Context.i = ZmqCtxNew(hLibrary)
+  Define Socket.i = ZmqSocket(hLibrary, Context, #ZMQ_SUB)
+  Define Rc.i = ZmqConnect(hLibrary, Socket, lpszServerAddr)
   
-  lpszSubscribe.s = "quotes"
+  Define lpszSubscribe.s = "quotes"
   
   ZmqSetsockopt(hLibrary, Socket, #ZMQ_SUBSCRIBE, lpszSubscribe, Len(lpszSubscribe))
   
+;   Define i.i
+;
 ;   For i = 0 To 10 
-;     *lpszBuffer = AllocateMemory(32)
+;     Define *lpszBuffer = AllocateMemory(32)
 ;     
 ;     ZmqRecv(hLibrary, Socket, *lpszBuffer, MemorySize(*lpszBuffer), 0)
 ;     
@@ -32,8 +36,8 @@ If hLibrary
 ;   Next
   
   While 1
-    *lpszTopicBuffer = AllocateMemory(32)
-    *lpszBuffer = AllocateMemory(32)
+    Define *lpszTopicBuffer = AllocateMemory(32)
+    Define *lpszBuffer = AllocateMemory(32)
     
     ZmqRecv(hLibrary, Socket, *lpszTopicBuffer, MemorySize(*lpszTopicBuffer), 0)
     ZmqRecv(hLibrary, Socket, *lpszBuffer, MemorySize(*lpszBuffer), 0)
@@ -55,9 +59,9 @@ If hLibrary
   ZmqDllClose(hLibrary)
 EndIf
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 8
+; CursorPosition = 26
 ; EnableXP
-; Executable = SubClient.exe
+; Executable = ..\SubClient.exe
 ; CurrentDirectory = ../
 ; IncludeVersionInfo
 ; VersionField2 = Inwazy Technology

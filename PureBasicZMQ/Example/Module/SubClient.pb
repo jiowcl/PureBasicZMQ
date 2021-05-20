@@ -3,6 +3,8 @@
 ;  Code released under the MIT license.
 ;--------------------------------------------------------------------------------------------
 
+EnableExplicit
+
 IncludeFile "../../Core/Enums.pbi"
 IncludeFile "../../Core/ZeroMQWrapper.pbi"
 
@@ -14,14 +16,16 @@ Global lpszServerAddr.s = "tcp://localhost:1689"
 If DllOpen(lpszLibZmqDll)
   OpenConsole()
   
-  Context.i = ZmqContext::New()
-  Socket.i = ZmqSocket::Socket(Context, #ZMQ_SUB)
-  Rc.i = ZmqSocket::Connect(Socket, lpszServerAddr)
+  Define Context.i = ZmqContext::New()
+  Define Socket.i = ZmqSocket::Socket(Context, #ZMQ_SUB)
+  Define Rc.i = ZmqSocket::Connect(Socket, lpszServerAddr)
   
-  lpszSubscribe.s = "quotes"
+  Define lpszSubscribe.s = "quotes"
   
   ZmqSocket::Setsockopt(Socket, #ZMQ_SUBSCRIBE, lpszSubscribe, Len(lpszSubscribe))
   
+;   Define i.i
+;
 ;   For i = 0 To 10 
 ;     *lpszBuffer = AllocateMemory(32)
 ;     
@@ -33,8 +37,8 @@ If DllOpen(lpszLibZmqDll)
 ;   Next
   
   While 1
-    *lpszTopicBuffer = AllocateMemory(32)
-    *lpszBuffer = AllocateMemory(32)
+    Define *lpszTopicBuffer = AllocateMemory(32)
+    Define *lpszBuffer = AllocateMemory(32)
     
     ZmqSocket::Recv(Socket, *lpszTopicBuffer, MemorySize(*lpszTopicBuffer), 0)
     ZmqSocket::Recv(Socket, *lpszBuffer, MemorySize(*lpszBuffer), 0)
@@ -56,10 +60,9 @@ If DllOpen(lpszLibZmqDll)
   DllClose()
 EndIf
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 23
-; FirstLine = 6
+; CursorPosition = 29
 ; EnableXP
-; Executable = ModuleSubClient.exe
+; Executable = ..\..\ModuleSubClient.exe
 ; CurrentDirectory = ..\..\
 ; IncludeVersionInfo
 ; VersionField2 = Inwazy Technology

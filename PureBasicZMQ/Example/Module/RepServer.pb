@@ -3,6 +3,8 @@
 ;  Code released under the MIT license.
 ;--------------------------------------------------------------------------------------------
 
+EnableExplicit
+
 IncludeFile "../../Core/Enums.pbi"
 IncludeFile "../../Core/ZeroMQWrapper.pbi"
 
@@ -14,18 +16,19 @@ Global lpszServerAddr.s = "tcp://*:1700"
 If DllOpen(lpszLibZmqDll)
   OpenConsole()
   
-  Context.i = ZmqContext::New()
-  Socket.i = ZmqSocket::Socket(Context, #ZMQ_REP)
-  Rc.i = ZmqSocket::Bind(Socket, lpszServerAddr)
+  Define Context.i = ZmqContext::New()
+  Define Socket.i = ZmqSocket::Socket(Context, #ZMQ_REP)
+  Define Rc.i = ZmqSocket::Bind(Socket, lpszServerAddr)
   
   PrintN("Bind an IP address: " + lpszServerAddr)
   
-  lTotal.l = 0
+  Define lTotal.l = 0
   
   While 1
-    *lpszBuffer = AllocateMemory(32)
     lTotal = lTotal + 1
-    lpszMessage.s = "Hi " + lTotal
+
+    Define *lpszBuffer = AllocateMemory(32)
+    Define lpszMessage.s = "Hi " + lTotal
     
     ZmqSocket::Recv(Socket, *lpszBuffer, MemorySize(*lpszBuffer), 0)
     
@@ -47,9 +50,9 @@ If DllOpen(lpszLibZmqDll)
   DllClose()
 EndIf
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 42
+; CursorPosition = 20
 ; EnableXP
-; Executable = ModuleRepServer.exe
+; Executable = ..\..\ModuleRepServer.exe
 ; CurrentDirectory = ..\..\
 ; IncludeVersionInfo
 ; VersionField2 = Inwazy Technology

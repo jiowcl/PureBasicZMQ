@@ -3,32 +3,34 @@
 ;  Code released under the MIT license.
 ;--------------------------------------------------------------------------------------------
 
+EnableExplicit
+
 IncludeFile "../Core/ZeroMQ.pbi"
 
 Global lpszLibZmqDll.s = "libzmq.dll"
 Global lpszServerAddr.s = "tcp://*:1689"
 
-Global hLibrary = ZmqDllOpen(lpszLibZmqDll)
+Global hLibrary.i = ZmqDllOpen(lpszLibZmqDll)
 
 If hLibrary
   OpenConsole()
   
-  Context.i = ZmqCtxNew(hLibrary)
-  Socket.i = ZmqSocket(hLibrary, Context, #ZMQ_PUB)
-  Rc.i = ZmqBind(hLibrary, Socket, lpszServerAddr)
+  Define Context.i = ZmqCtxNew(hLibrary)
+  Define Socket.i = ZmqSocket(hLibrary, Context, #ZMQ_PUB)
+  Define Rc.i = ZmqBind(hLibrary, Socket, lpszServerAddr)
   
   PrintN("Bind an IP address: " + lpszServerAddr)
   
   While 1
-    *lpszBuffer = AllocateMemory(32)
-    lpszTopic.s = "quotes"
-    lpszMessage.s = "Bid:" + Random(9000, 1000) + ",Ask:" + Random(9000, 1000)
+    Define *lpszBuffer = AllocateMemory(32)
+    Define lpszTopic.s = "quotes"
+    Define lpszMessage.s = "Bid:" + Random(9000, 1000) + ",Ask:" + Random(9000, 1000)
     
     ZmqRecv(hLibrary, Socket, *lpszBuffer, MemorySize(*lpszBuffer), 0)
     
     Delay(10)
     
-    lpszReturnMessage.s = PeekS(*lpszBuffer, -1, #PB_UTF8)
+    Define lpszReturnMessage.s = PeekS(*lpszBuffer, -1, #PB_UTF8)
     
     If lpszReturnMessage <> ""
       PrintN("Received: ")
@@ -49,9 +51,9 @@ If hLibrary
   ZmqDllClose(hLibrary)
 EndIf
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 49
+; CursorPosition = 9
 ; EnableXP
-; Executable = PubServer.exe
+; Executable = ..\PubServer.exe
 ; CurrentDirectory = ../
 ; IncludeVersionInfo
 ; VersionField2 = Inwazy Technology

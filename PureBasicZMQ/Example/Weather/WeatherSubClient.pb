@@ -3,6 +3,8 @@
 ;  Code released under the MIT license.
 ;--------------------------------------------------------------------------------------------
 
+EnableExplicit
+
 IncludeFile "../../Core/Enums.pbi"
 IncludeFile "../../Core/ZeroMQWrapper.pbi"
 
@@ -14,17 +16,17 @@ Global lpszServerAddr.s = "tcp://localhost:1692"
 If DllOpen(lpszLibZmqDll)
   OpenConsole()
   
-  Context.i = ZmqContext::New()
-  Socket.i = ZmqSocket::Socket(Context, #ZMQ_SUB)
-  Rc.i = ZmqSocket::Connect(Socket, lpszServerAddr)
+  Define Context.i = ZmqContext::New()
+  Define Socket.i = ZmqSocket::Socket(Context, #ZMQ_SUB)
+  Define Rc.i = ZmqSocket::Connect(Socket, lpszServerAddr)
   
-  lpszSubscribe.s = "weather"
+  Define lpszSubscribe.s = "weather"
   
   ZmqSocket::Setsockopt(Socket, #ZMQ_SUBSCRIBE, lpszSubscribe, Len(lpszSubscribe))
   
   While 1
-    *lpszTopicBuffer = AllocateMemory(1024)
-    *lpszBuffer = AllocateMemory(1024)
+    Define *lpszTopicBuffer = AllocateMemory(1024)
+    Define *lpszBuffer = AllocateMemory(1024)
     
     ZmqSocket::Recv(Socket, *lpszTopicBuffer, MemorySize(*lpszTopicBuffer), 0)
     ZmqSocket::Recv(Socket, *lpszBuffer, MemorySize(*lpszBuffer), 0)
@@ -46,9 +48,9 @@ If DllOpen(lpszLibZmqDll)
   DllClose()
 EndIf
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 26
+; CursorPosition = 28
 ; EnableXP
-; Executable = ModuleWeatherSubClient.exe
+; Executable = ..\..\ModuleWeatherSubClient.exe
 ; CurrentDirectory = ..\..\
 ; IncludeVersionInfo
 ; VersionField2 = Inwazy Technology

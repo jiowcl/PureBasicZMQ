@@ -3,9 +3,13 @@
 ;  Code released under the MIT license.
 ;--------------------------------------------------------------------------------------------
 
+CompilerIf #PB_Compiler_Version < 520
+  CompilerWarning "PureBasic 5.2.0 Version Required."
+CompilerEndIf
+
 ; Declare Module ZeroMQWrapper
 DeclareModule ZeroMQWrapper
-  Global dllInstance
+  Global dllInstance.i
   
   Declare.i DllOpen(lpszDllPath.s)
   Declare.i DllClose()
@@ -231,9 +235,8 @@ Module ZmqSocket
   EndProcedure  
 EndModule
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 225
-; FirstLine = 181
-; Folding = ----
+; CursorPosition = 7
+; Folding = -----
 ; EnableXP
 ; IncludeVersionInfo
 ; VersionField2 = Inwazy Technology

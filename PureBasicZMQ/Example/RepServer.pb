@@ -3,28 +3,31 @@
 ;  Code released under the MIT license.
 ;--------------------------------------------------------------------------------------------
 
+EnableExplicit
+
 IncludeFile "../Core/ZeroMQ.pbi"
 
 Global lpszLibZmqDll.s = "libzmq.dll"
 Global lpszServerAddr.s = "tcp://*:1700"
 
-Global hLibrary = ZmqDllOpen(lpszLibZmqDll)
+Global hLibrary.i = ZmqDllOpen(lpszLibZmqDll)
 
 If hLibrary
   OpenConsole()
   
-  Context.i = ZmqCtxNew(hLibrary)
-  Socket.i = ZmqSocket(hLibrary, Context, #ZMQ_REP)
-  Rc.i = ZmqBind(hLibrary, Socket, lpszServerAddr)
+  Define Context.i = ZmqCtxNew(hLibrary)
+  Define Socket.i = ZmqSocket(hLibrary, Context, #ZMQ_REP)
+  Define Rc.i = ZmqBind(hLibrary, Socket, lpszServerAddr)
   
   PrintN("Bind an IP address: " + lpszServerAddr)
   
-  lTotal.l = 0
+  Define lTotal.l = 0
   
   While 1
-    *lpszBuffer = AllocateMemory(32)
     lTotal = lTotal + 1
-    lpszMessage.s = "Hi " + lTotal
+    
+    Define *lpszBuffer = AllocateMemory(32)
+    Define lpszMessage.s = "Hi " + lTotal
     
     ZmqRecv(hLibrary, Socket, *lpszBuffer, MemorySize(*lpszBuffer), 0)
     
@@ -46,9 +49,9 @@ If hLibrary
   ZmqDllClose(hLibrary)
 EndIf
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 2
+; CursorPosition = 6
 ; EnableXP
-; Executable = RepServer.exe
+; Executable = ..\RepServer.exe
 ; CurrentDirectory = ..\
 ; IncludeVersionInfo
 ; VersionField2 = Inwazy Technology

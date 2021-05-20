@@ -3,6 +3,8 @@
 ;  Code released under the MIT license.
 ;--------------------------------------------------------------------------------------------
 
+EnableExplicit
+
 IncludeFile "../../Core/Enums.pbi"
 IncludeFile "../../Core/ZeroMQWrapper.pbi"
 
@@ -14,15 +16,17 @@ Global lpszServerAddr.s = "tcp://localhost:1700"
 If DllOpen(lpszLibZmqDll)
   OpenConsole()
   
-  Context.i = ZmqContext::New()
-  Socket.i = ZmqSocket::Socket(Context, #ZMQ_REQ)
-  Rc.i = ZmqSocket::Connect(Socket, lpszServerAddr)
+  Define Context.i = ZmqContext::New()
+  Define Socket.i = ZmqSocket::Socket(Context, #ZMQ_REQ)
+  Define Rc.i = ZmqSocket::Connect(Socket, lpszServerAddr)
   
   PrintN("Connect to Server: " + lpszServerAddr)
   
+  Define i.i
+  
   For i = 0 To 10 
-    *lpszBuffer = AllocateMemory(32)
-    lpszMessage.s = "From Client"
+    Define *lpszBuffer = AllocateMemory(32)
+    Define lpszMessage.s = "From Client"
     
     ZmqSocket::Send(Socket, lpszMessage, Len(lpszMessage), 0)
     ZmqSocket::Recv(Socket, *lpszBuffer, MemorySize(*lpszBuffer), 0)
@@ -42,9 +46,9 @@ If DllOpen(lpszLibZmqDll)
   DllClose()
 EndIf
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 36
+; CursorPosition = 24
 ; EnableXP
-; Executable = ModuleReqClient.exe
+; Executable = ..\..\ModuleReqClient.exe
 ; CurrentDirectory = ..\..\
 ; IncludeVersionInfo
 ; VersionField2 = Inwazy Technology
