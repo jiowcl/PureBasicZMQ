@@ -14,7 +14,7 @@ PrototypeC.i ZmqCtxGetFunc(context.i, option.i)
 
 ; <summary>
 ; ZmqCtxNew
-; <summary>
+; </summary>
 ; <param name="dllInstance"></param>
 ; <returns>Returns integer.</returns>
 Procedure.i ZmqCtxNew(dllInstance.i)
@@ -31,7 +31,7 @@ EndProcedure
 
 ; <summary>
 ; ZmqCtxTerm
-; <summary>
+; </summary>
 ; <param name="dllInstance"></param>
 ; <param name="context"></param>
 ; <returns>Returns integer.</returns>
@@ -49,7 +49,7 @@ EndProcedure
 
 ; <summary>
 ; ZmqCtxShutdown
-; <summary>
+; </summary>
 ; <param name="dllInstance"></param>
 ; <param name="context"></param>
 ; <returns>Returns integer.</returns>
@@ -67,7 +67,7 @@ EndProcedure
 
 ; <summary>
 ; ZmqCtxSet
-; <summary>
+; </summary>
 ; <param name="dllInstance"></param>
 ; <param name="context"></param>
 ; <param name="option"></param>
@@ -87,7 +87,7 @@ EndProcedure
 
 ; <summary>
 ; ZmqCtxGet
-; <summary>
+; </summary>
 ; <param name="dllInstance"></param>
 ; <param name="context"></param>
 ; <param name="option"></param>
@@ -104,7 +104,9 @@ Procedure.i ZmqCtxGet(dllInstance.i, context.i, option.i)
   ProcedureReturn lResult
 EndProcedure
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 10
+; CursorPosition = 89
+; FirstLine = 54
+; Folding = -
 ; EnableXP
 ; IncludeVersionInfo
 ; VersionField2 = Inwazy Technology

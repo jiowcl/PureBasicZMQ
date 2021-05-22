@@ -9,7 +9,7 @@ Declare.i ZmqDllClose(dllInstance.i)
 
 ; <summary>
 ; ZmqDllOpen
-; <summary>
+; </summary>
 ; <param name="lpszDllPath"></param>
 ; <returns>Returns integer.</returns>
 Procedure.i ZmqDllOpen(lpszDllPath.s)
@@ -18,7 +18,7 @@ EndProcedure
 
 ; <summary>
 ; ZmqDllClose
-; <summary>
+; </summary>
 ; <param name="dllInstance"></param>
 ; <returns>Returns integer.</returns>
 Procedure.i ZmqDllClose(dllInstance.i)
@@ -29,7 +29,8 @@ Procedure.i ZmqDllClose(dllInstance.i)
   ProcedureReturn #True
 EndProcedure
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 10
+; CursorPosition = 11
+; Folding = -
 ; EnableXP
 ; IncludeVersionInfo
 ; VersionField2 = Inwazy Technology

@@ -9,6 +9,7 @@ PrototypeC.i ZmqBindFunc(socket.i, addr.p-Ascii)
 PrototypeC.i ZmqUnBindFunc(socket.i, addr.p-Ascii)
 PrototypeC.i ZmqRecvFunc(socket.i, *buf.p-Ascii, len.i, flags.i)
 PrototypeC.i ZmqSendFunc(socket.i, buf.p-Ascii, leng.i, flags.i)
+PrototypeC.i ZmqSendConstFunc(socket.i, buf.p-Ascii, leng.i, flags.i)
 PrototypeC.i ZmqConnectFunc(socket.i, addr.p-Ascii)
 PrototypeC.i ZmqDisConnectFunc(socket.i, addr.p-Ascii)
 PrototypeC.i ZmqSetsockoptFunc(socket.i, option.i, optval.p-Ascii, optvallen.i)
@@ -19,7 +20,7 @@ PrototypeC.i ZmqCloseFunc(socket.i)
 
 ; <summary>
 ; ZmqSocket
-; <summary>
+; </summary>
 ; <param name="dllInstance"></param>
 ; <param name="s"></param>
 ; <param name="type"></param>
@@ -38,7 +39,7 @@ EndProcedure
 
 ; <summary>
 ; ZmqBind
-; <summary>
+; </summary>
 ; <param name="dllInstance"></param>
 ; <param name="socket"></param>
 ; <param name="addr"></param>
@@ -57,7 +58,7 @@ EndProcedure
 
 ; <summary>
 ; ZmqUnBind
-; <summary>
+; </summary>
 ; <param name="dllInstance"></param>
 ; <param name="socket"></param>
 ; <param name="addr"></param>
@@ -76,7 +77,7 @@ EndProcedure
 
 ; <summary>
 ; ZmqRecv
-; <summary>
+; </summary>
 ; <param name="dllInstance"></param>
 ; <param name="socket"></param>
 ; <param name="buf"></param>
@@ -97,7 +98,7 @@ EndProcedure
 
 ; <summary>
 ; ZmqSend
-; <summary>
+; </summary>
 ; <param name="dllInstance"></param>
 ; <param name="socket"></param>
 ; <param name="buf"></param>
@@ -117,8 +118,29 @@ Procedure.i ZmqSend(dllInstance.i, socket.i, buf.s, len.i, flags.i)
 EndProcedure
 
 ; <summary>
-; ZmqConnect
+; ZmqSendConst
+; </summary>
+; <param name="dllInstance"></param>
+; <param name="socket"></param>
+; <param name="buf"></param>
+; <param name="len"></param>
+; <param name="flags"></param>
+; <returns>Returns integer.</returns>
+Procedure.i ZmqSendConst(dllInstance.i, socket.i, buf.s, len.i, flags.i)
+  Protected.i lResult
+  Protected.ZmqSendConstFunc pFuncCall
+  
+  If IsLibrary(dllInstance)
+    pFuncCall = GetFunction(dllInstance, "zmq_send_const")
+    lResult = pFuncCall(socket, buf, len, flags)
+  EndIf
+  
+  ProcedureReturn lResult
+EndProcedure
+
 ; <summary>
+; ZmqConnect
+; </summary>
 ; <param name="dllInstance"></param>
 ; <param name="socket"></param>
 ; <param name="addr"></param>
@@ -137,7 +159,7 @@ EndProcedure
 
 ; <summary>
 ; ZmqDisConnect
-; <summary>
+; </summary>
 ; <param name="dllInstance"></param>
 ; <param name="socket"></param>
 ; <param name="addr"></param>
@@ -156,7 +178,7 @@ EndProcedure
 
 ; <summary>
 ; ZmqSetsockopt
-; <summary>
+; </summary>
 ; <param name="dllInstance"></param>
 ; <param name="socket"></param>
 ; <param name="option"></param>
@@ -177,7 +199,7 @@ EndProcedure
 
 ; <summary>
 ; ZmqGetsockopt
-; <summary>
+; </summary>
 ; <param name="dllInstance"></param>
 ; <param name="socket"></param>
 ; <param name="option"></param>
@@ -198,7 +220,7 @@ EndProcedure
 
 ; <summary>
 ; ZmqClose
-; <summary>
+; </summary>
 ; <param name="dllInstance"></param>
 ; <param name="socket"></param>
 ; <returns>Returns integer.</returns>
@@ -214,8 +236,8 @@ Procedure.i ZmqClose(dllInstance.i, socket.i)
   ProcedureReturn lResult
 EndProcedure
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 85
-; FirstLine = 70
+; CursorPosition = 222
+; FirstLine = 186
 ; Folding = --
 ; EnableXP
 ; IncludeVersionInfo

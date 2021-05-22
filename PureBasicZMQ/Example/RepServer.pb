@@ -49,7 +49,7 @@ If hLibrary
   ZmqDllClose(hLibrary)
 EndIf
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 6
+; CursorPosition = 38
 ; EnableXP
 ; Executable = ..\RepServer.exe
 ; CurrentDirectory = ..\

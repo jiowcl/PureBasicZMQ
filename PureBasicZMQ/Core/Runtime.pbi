@@ -11,7 +11,7 @@ PrototypeC ZmqVersionFunc(*major.Integer, *minor.Integer, *patch.Integer)
 
 ; <summary>
 ; ZmqErrno
-; <summary>
+; </summary>
 ; <param name="dllInstance"></param>
 ; <returns>Returns integer.</returns>
 Procedure.i ZmqErrno(dllInstance.i)
@@ -28,7 +28,7 @@ EndProcedure
 
 ; <summary>
 ; ZmqVersion
-; <summary>
+; </summary>
 ; <param name="dllInstance"></param>
 ; <param name="major"></param>
 ; <param name="minor"></param>
@@ -43,7 +43,7 @@ Procedure ZmqVersion(dllInstance.i, *major.Integer, *minor.Integer, *patch.Integ
   EndIf
 EndProcedure
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 25
+; CursorPosition = 13
 ; Folding = -
 ; EnableXP
 ; IncludeVersionInfo

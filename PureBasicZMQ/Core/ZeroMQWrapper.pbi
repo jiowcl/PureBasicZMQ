@@ -44,7 +44,7 @@ Module ZeroMQWrapper
   
   ; <summary>
   ; DllOpen
-  ; <summary>
+  ; </summary>
   ; <param name="lpszDllPath"></param>
   ; <returns>Returns integer.</returns>
   Procedure.i DllOpen(lpszDllPath.s)
@@ -59,7 +59,7 @@ Module ZeroMQWrapper
   
   ; <summary>
   ; DllClose
-  ; <summary>
+  ; </summary>
   ; <param name="dllInstance"></param>
   ; <returns>Returns integer.</returns>
   Procedure.i DllClose()
@@ -75,7 +75,7 @@ Module ZmqContext
   
   ; <summary>
   ; New
-  ; <summary>
+  ; </summary>
   ; <returns>Returns integer.</returns>
   Procedure.i New()
     ProcedureReturn ZmqCtxNew(ZeroMQWrapper::dllInstance)
@@ -83,7 +83,7 @@ Module ZmqContext
   
   ; <summary>
   ; Term
-  ; <summary>
+  ; </summary>
   ; <param name="context"></param>
   ; <returns>Returns integer.</returns>
   Procedure.i Term(context.i)
@@ -92,7 +92,7 @@ Module ZmqContext
   
   ; <summary>
   ; Shutdown
-  ; <summary>
+  ; </summary>
   ; <param name="context"></param>
   ; <returns>Returns integer.</returns>
   Procedure.i Shutdown(context.i)
@@ -101,7 +101,7 @@ Module ZmqContext
   
   ; <summary>
   ; Set
-  ; <summary>
+  ; </summary>
   ; <param name="context"></param>
   ; <param name="option"></param>
   ; <param name="optval"></param>
@@ -112,7 +112,7 @@ Module ZmqContext
   
   ; <summary>
   ; Get
-  ; <summary>
+  ; </summary>
   ; <param name="context"></param>
   ; <param name="option"></param>
   ; <returns>Returns integer.</returns>
@@ -129,7 +129,7 @@ Module ZmqSocket
   
   ; <summary>
   ; Socket
-  ; <summary>
+  ; </summary>
   ; <param name="s"></param>
   ; <param name="type"></param>
   ; <returns>Returns integer.</returns>
@@ -139,7 +139,7 @@ Module ZmqSocket
   
   ; <summary>
   ; Bind
-  ; <summary>
+  ; </summary>
   ; <param name="socket"></param>
   ; <param name="addr"></param>
   ; <returns>Returns integer.</returns>
@@ -149,7 +149,7 @@ Module ZmqSocket
   
   ; <summary>
   ; UnBind
-  ; <summary>
+  ; </summary>
   ; <param name="socket"></param>
   ; <param name="addr"></param>
   ; <returns>Returns integer.</returns>
@@ -159,7 +159,7 @@ Module ZmqSocket
   
   ; <summary>
   ; Recv
-  ; <summary>
+  ; </summary>
   ; <param name="socket"></param>
   ; <param name="buf"></param>
   ; <param name="len"></param>
@@ -171,7 +171,7 @@ Module ZmqSocket
   
   ; <summary>
   ; Send
-  ; <summary>
+  ; </summary>
   ; <param name="socket"></param>
   ; <param name="buf"></param>
   ; <param name="len"></param>
@@ -182,8 +182,20 @@ Module ZmqSocket
   EndProcedure
   
   ; <summary>
-  ; Connect
+  ; SendConst
+  ; </summary>
+  ; <param name="socket"></param>
+  ; <param name="buf"></param>
+  ; <param name="len"></param>
+  ; <param name="flags"></param>
+  ; <returns>Returns integer.</returns>
+  Procedure.i SendConst(socket.i, buf.s, len.i, flags.i)
+    ProcedureReturn ZmqSendConst(ZeroMQWrapper::dllInstance, socket, buf, len, flags)
+  EndProcedure
+  
   ; <summary>
+  ; Connect
+  ; </summary>
   ; <param name="socket"></param>
   ; <param name="addr"></param>
   ; <returns>Returns integer.</returns>
@@ -193,7 +205,7 @@ Module ZmqSocket
   
   ; <summary>
   ; DisConnect
-  ; <summary>
+  ; </summary>
   ; <param name="socket"></param>
   ; <param name="addr"></param>
   ; <returns>Returns integer.</returns>
@@ -203,7 +215,7 @@ Module ZmqSocket
   
   ; <summary>
   ; Setsockopt
-  ; <summary>
+  ; </summary>
   ; <param name="socket"></param>
   ; <param name="option"></param>
   ; <param name="optval"></param>
@@ -215,7 +227,7 @@ Module ZmqSocket
   
   ; <summary>
   ; Getsockopt
-  ; <summary>
+  ; </summary>
   ; <param name="socket"></param>
   ; <param name="option"></param>
   ; <param name="optval"></param>
@@ -227,7 +239,7 @@ Module ZmqSocket
   
   ; <summary>
   ; Close
-  ; <summary>
+  ; </summary>
   ; <param name="socket"></param>
   ; <returns>Returns integer.</returns>
   Procedure.i Close(socket.i)
@@ -235,7 +247,7 @@ Module ZmqSocket
   EndProcedure  
 EndModule
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 7
+; CursorPosition = 46
 ; Folding = -----
 ; EnableXP
 ; IncludeVersionInfo
