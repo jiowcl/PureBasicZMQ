@@ -7,44 +7,48 @@
   <section name="data">
     <explorer view="Example\" pattern="0"/>
     <log show="1"/>
-    <lastopen date="2021-01-12 23:22" user="Fred" host="DESKTOP-ATREA"/>
+    <lastopen date="2021-06-03 21:54" user="Fred" host="DESKTOP-ATREA"/>
   </section>
   <section name="files">
     <file name="Example\Module\PubServer.pb">
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="+++"/>
-      <fingerprint md5="2e38850450547507c7da811ef1183a8e"/>
+      <fingerprint md5="b1c6206800321c8b0219f57e4a5b9428"/>
     </file>
     <file name="Example\Module\RepServer.pb">
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="+++"/>
-      <fingerprint md5="db1188177d55b99173ac5499be4af1ef"/>
+      <fingerprint md5="9dc5e10265c99aebdff07b608c9256a0"/>
     </file>
     <file name="Example\Module\ReqClient.pb">
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="+++"/>
-      <fingerprint md5="ad4af945d7acf5940503845b6850e7f4"/>
+      <fingerprint md5="f277eceba7754fb2dd73211f2cc615ef"/>
     </file>
     <file name="Example\Module\SubClient.pb">
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="+++"/>
-      <fingerprint md5="f89fd83f9b213fca41faca99a2f5db77"/>
+      <fingerprint md5="242fc0ef4b5c8035e8ad69ade52c7e3f"/>
     </file>
     <file name="Example\PubServer.pb">
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="++"/>
-      <fingerprint md5="66b8792a3428617e1f0e680d6b0ac132"/>
+      <fingerprint md5="e48069da8da4bb4175763148d629924a"/>
     </file>
     <file name="Example\RepServer.pb">
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="++"/>
-      <fingerprint md5="4857d2f38f9ac707814f3dbdf72d72e1"/>
+      <fingerprint md5="6c418985fb10a1078cf02e06180f3ca5"/>
     </file>
     <file name="Example\ReqClient.pb">
-      <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="++"/>
-      <fingerprint md5="acf52e9e8846aa4fa0be92f18e203499"/>
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
+      <fingerprint md5="4237a49d477a8099685b67d17c58fc66"/>
     </file>
     <file name="Example\SubClient.pb">
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="++"/>
-      <fingerprint md5="56346b4a216e18966d1cb58dd3656de0"/>
+      <fingerprint md5="82abf2078d66b7b74ae369e92da227b1"/>
     </file>
     <file name="Example\Zmq.pb">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="++"/>
+      <fingerprint md5="f10d61a4c73b52931f5619ba44ef588a"/>
+    </file>
+    <file name="Example\Thread.pb">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
-      <fingerprint md5="e306fe04a4109ef91005fb1319564cfa"/>
+      <fingerprint md5="02cc37a01a8fefb07a6635b4f84e70f4"/>
     </file>
   </section>
   <section name="targets">

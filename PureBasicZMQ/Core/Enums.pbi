@@ -120,8 +120,12 @@
 ; Send/recv Options
 #ZMQ_DONTWAIT = 1
 #ZMQ_SNDMORE  = 2
+
+; Callback Function
+PrototypeC ZmqThreadFnProc(vData.i)
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 10
+; CursorPosition = 124
+; FirstLine = 74
 ; EnableXP
 ; IncludeVersionInfo
 ; VersionField2 = Inwazy Technology
