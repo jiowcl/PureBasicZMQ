@@ -16,10 +16,6 @@ PrototypeC.i ZmqSetsockoptFunc(socket.i, option.i, optval.p-Ascii, optvallen.i)
 PrototypeC.i ZmqGetsockoptFunc(socket.i, option.i, *optval.p-Ascii, optvallen.i)
 PrototypeC.i ZmqCloseFunc(socket.i)
 
-; Prototype Function
-PrototypeC.i ZmqThreadstartFunc(*func_.ZmqThreadFnProc, arg_.i)
-PrototypeC ZmqThreadcloseFunc(thread_.i)
-
 ; Zmq Function Declare
 
 ; <summary>
@@ -239,44 +235,10 @@ Procedure.i ZmqClose(dllInstance.i, socket.i)
   
   ProcedureReturn lResult
 EndProcedure
-
-; <summary>
-; ZmqThreadstart
-; </summary>
-; <param name="dllInstance"></param>
-; <param name="*func_"></param>
-; <param name="arg_"></param>
-; <returns>Returns integer.</returns>
-Procedure.i ZmqThreadstart(dllInstance.i, *func_.ZmqThreadFnProc, arg_.i)
-  Protected.i lResult
-  Protected.ZmqThreadstartFunc pFuncCall
-  
-  If IsLibrary(dllInstance)
-    pFuncCall = GetFunction(dllInstance, "zmq_threadstart")
-    lResult = pFuncCall(*func_, arg_)
-  EndIf
-  
-  ProcedureReturn lResult
-EndProcedure
-
-; <summary>
-; ZmqThreadclose
-; </summary>
-; <param name="dllInstance"></param>
-; <param name="thread_"></param>
-; <returns>Returns void.</returns>
-Procedure ZmqThreadclose(dllInstance.i, thread_.i)
-  Protected.ZmqThreadcloseFunc pFuncCall
-  
-  If IsLibrary(dllInstance)
-    pFuncCall = GetFunction(dllInstance, "zmq_threadclose")
-    pFuncCall(thread_)
-  EndIf
-EndProcedure
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 266
-; FirstLine = 224
-; Folding = ---
+; CursorPosition = 236
+; FirstLine = 186
+; Folding = --
 ; EnableXP
 ; IncludeVersionInfo
 ; VersionField2 = Inwazy Technology

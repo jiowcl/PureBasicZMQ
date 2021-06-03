@@ -38,6 +38,14 @@ DeclareModule ZmqSocket
   Declare.i Close(socket.i)
 EndDeclareModule  
 
+; Declare Module ZmqHelper
+DeclareModule ZmqHelper
+  IncludeFile "Enums.pbi"
+  
+  Declare.i Threadstart(*func_.ZmqThreadFnProc, arg_.i)
+  Declare Threadclose(thread_.i)
+EndDeclareModule  
+
 ; Module ZeroMQWrapper
 Module ZeroMQWrapper
   IncludeFile "LibDll.pbi"
@@ -246,8 +254,35 @@ Module ZmqSocket
     ProcedureReturn ZmqClose(ZeroMQWrapper::dllInstance, socket.i)
   EndProcedure  
 EndModule
+
+; Module ZmqHelper
+Module ZmqHelper
+  IncludeFile "Helper.pbi"
+  
+  UseModule ZeroMQWrapper
+  
+  ; <summary>
+  ; Threadstart
+  ; </summary>
+  ; <param name="*func_"></param>
+  ; <param name="arg_"></param>
+  ; <returns>Returns integer.</returns>
+  Procedure.i Threadstart(*func_.ZmqThreadFnProc, arg_.i)
+    ProcedureReturn ZmqThreadstart(ZeroMQWrapper::dllInstance, *func_, arg_)
+  EndProcedure 
+  
+  ; <summary>
+  ; Threadclose
+  ; </summary>
+  ; <param name="thread_"></param>
+  ; <returns>Returns void.</returns>
+  Procedure.i Threadclose(thread_.i)
+    ProcedureReturn ZmqThreadclose(ZeroMQWrapper::dllInstance, thread_)
+  EndProcedure
+EndModule  
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 46
+; CursorPosition = 269
+; FirstLine = 231
 ; Folding = -----
 ; EnableXP
 ; IncludeVersionInfo
