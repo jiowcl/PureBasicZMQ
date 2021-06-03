@@ -95,7 +95,7 @@ EndIf
 ; Folding = -
 ; EnableXP
 ; Executable = ..\..\ModuleThread.exe
-; CurrentDirectory = ../
+; CurrentDirectory = ../../
 ; IncludeVersionInfo
 ; VersionField2 = Inwazy Technology
 ; VersionField3 = PureBasicZMQ
