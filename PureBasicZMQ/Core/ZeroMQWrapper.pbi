@@ -42,6 +42,7 @@ EndDeclareModule
 DeclareModule ZmqHelper
   IncludeFile "Enums.pbi"
   
+  Declare Sleep(seconds_.i)
   Declare.i Threadstart(*func_.ZmqThreadFnProc, arg_.i)
   Declare Threadclose(thread_.i)
 EndDeclareModule  
@@ -261,6 +262,10 @@ Module ZmqHelper
   
   UseModule ZeroMQWrapper
   
+  Procedure Sleep(seconds_.i)
+    ZmqSleep(ZeroMQWrapper::dllInstance, seconds_)
+  EndProcedure
+  
   ; <summary>
   ; Threadstart
   ; </summary>
@@ -276,14 +281,14 @@ Module ZmqHelper
   ; </summary>
   ; <param name="thread_"></param>
   ; <returns>Returns void.</returns>
-  Procedure.i Threadclose(thread_.i)
-    ProcedureReturn ZmqThreadclose(ZeroMQWrapper::dllInstance, thread_)
+  Procedure Threadclose(thread_.i)
+    ZmqThreadclose(ZeroMQWrapper::dllInstance, thread_)
   EndProcedure
 EndModule  
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 269
-; FirstLine = 231
-; Folding = -----
+; CursorPosition = 46
+; FirstLine = 13
+; Folding = ------
 ; EnableXP
 ; IncludeVersionInfo
 ; VersionField2 = Inwazy Technology

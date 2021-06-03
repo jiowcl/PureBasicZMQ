@@ -71,7 +71,7 @@ If DllOpen(lpszLibZmqDll)
   Define ContextReq.i = ZmqContext::New()
   Define SocketReq.i = ZmqSocket::Socket(ContextReq, #ZMQ_REQ)
   Define RcReq.i = ZmqSocket::Connect(SocketReq, lpszServerClientAddr)
-   
+  
   Define threadRep.i = ZmqHelper::Threadstart(@TestZmqThreadRepProc(), SocketRep)
   Define threadReq.i = ZmqHelper::Threadstart(@TestZmqThreadReqProc(), SocketReq)
   
@@ -90,8 +90,8 @@ If DllOpen(lpszLibZmqDll)
   DllClose()
 EndIf
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 33
-; FirstLine = 10
+; CursorPosition = 74
+; FirstLine = 40
 ; Folding = -
 ; EnableXP
 ; Executable = ..\..\ModuleThread.exe

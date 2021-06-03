@@ -70,7 +70,7 @@ If hLibrary
   Define ContextReq.i = ZmqCtxNew(hLibrary)
   Define SocketReq.i = ZmqSocket(hLibrary, ContextReq, #ZMQ_REQ)
   Define RcReq.i = ZmqConnect(hLibrary, SocketReq, lpszServerClientAddr)
-   
+    
   Define threadRep.i = ZmqThreadstart(hLibrary, @TestZmqThreadRepProc(), SocketRep)
   Define threadReq.i = ZmqThreadstart(hLibrary, @TestZmqThreadReqProc(), SocketReq)
   
@@ -89,8 +89,8 @@ If hLibrary
   ZmqDllClose(hLibrary)
 EndIf
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 41
-; FirstLine = 15
+; CursorPosition = 72
+; FirstLine = 39
 ; Folding = -
 ; EnableXP
 ; Executable = ..\Thread.exe

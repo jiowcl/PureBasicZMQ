@@ -4,10 +4,27 @@
 ;--------------------------------------------------------------------------------------------
 
 ; Prototype Function
+PrototypeC ZmqSleepFunc(seconds_.i)
+
 PrototypeC.i ZmqThreadstartFunc(*func_.ZmqThreadFnProc, arg_.i)
 PrototypeC ZmqThreadcloseFunc(thread_.i)
 
 ; Zmq Function Declare
+
+; <summary>
+; ZmqSleep
+; </summary>
+; <param name="dllInstance"></param>
+; <param name="seconds_"></param>
+; <returns>Returns void.</returns>
+Procedure ZmqSleep(dllInstance.i, seconds_.i)
+  Protected.ZmqSleepFunc pFuncCall
+  
+  If IsLibrary(dllInstance)
+    pFuncCall = GetFunction(dllInstance, "zmq_sleep")
+    pFuncCall(seconds_)
+  EndIf
+EndProcedure
 
 ; <summary>
 ; ZmqThreadstart
@@ -43,7 +60,7 @@ Procedure ZmqThreadclose(dllInstance.i, thread_.i)
   EndIf
 EndProcedure
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 9
+; CursorPosition = 24
 ; Folding = -
 ; EnableXP
 ; IncludeVersionInfo
