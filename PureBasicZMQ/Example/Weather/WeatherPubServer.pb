@@ -10,7 +10,21 @@ IncludeFile "../../Core/ZeroMQWrapper.pbi"
 
 UseModule ZeroMQWrapper
 
-Global lpszLibZmqDll.s = "libzmq.dll"
+Global lpszCurrentDir.s = GetCurrentDirectory()
+
+; Libzmq version (x86/x64)
+CompilerIf #PB_Compiler_Processor = #PB_Processor_x64
+  Global lpszLibZmqDir.s = "Library/x64"
+  Global lpszLibZmqDll.s = lpszCurrentDir + lpszLibZmqDir + "/libzmq.dll"
+  
+  SetCurrentDirectory(lpszCurrentDir + lpszLibZmqDir)
+CompilerElse
+  Global lpszLibZmqDir.s = "Library/x86"
+  Global lpszLibZmqDll.s = lpszCurrentDir + lpszLibZmqDir + "/libzmq.dll"  
+  
+  SetCurrentDirectory(lpszCurrentDir + lpszLibZmqDir)
+CompilerEndIf
+
 Global lpszServerAddr.s = "tcp://*:1692"
 
 Global lpszJsonWeather.s = ""
@@ -65,8 +79,9 @@ If DllOpen(lpszLibZmqDll)
   
   DllClose()
 EndIf
-; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 47
+; IDE Options = PureBasic 5.72 (Windows - x64)
+; CursorPosition = 14
+; Folding = -
 ; EnableXP
 ; Executable = ..\..\ModuleWeatherPubServer.exe
 ; CurrentDirectory = ..\..\
