@@ -262,6 +262,11 @@ Module ZmqHelper
   
   UseModule ZeroMQWrapper
   
+  ; <summary>
+  ; Sleep
+  ; </summary>
+  ; <param name="seconds_"></param>
+  ; <returns>Returns void.</returns>
   Procedure Sleep(seconds_.i)
     ZmqSleep(ZeroMQWrapper::dllInstance, seconds_)
   EndProcedure
@@ -286,8 +291,8 @@ Module ZmqHelper
   EndProcedure
 EndModule  
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 46
-; FirstLine = 13
+; CursorPosition = 268
+; FirstLine = 236
 ; Folding = ------
 ; EnableXP
 ; IncludeVersionInfo
