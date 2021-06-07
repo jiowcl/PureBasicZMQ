@@ -263,6 +263,32 @@ Module ZmqHelper
   UseModule ZeroMQWrapper
   
   ; <summary>
+  ; StopwatchStart
+  ; </summary>
+  ; <returns>Returns integer.</returns>
+  Procedure.i StopwatchStart()
+    ProcedureReturn ZmqStopwatchStart(ZeroMQWrapper::dllInstance)
+  EndProcedure
+  
+  ; <summary>
+  ; StopwatchIntermediate
+  ; </summary>
+  ; <param name="watch_"></param>
+  ; <returns>Returns long.</returns>
+  Procedure.l StopwatchIntermediate(watch_.i)
+    ProcedureReturn ZmqStopwatchIntermediate(ZeroMQWrapper::dllInstance, watch_)
+  EndProcedure
+  
+  ; <summary>
+  ; StopwatchStop
+  ; </summary>
+  ; <param name="watch_"></param>
+  ; <returns>Returns long.</returns>
+  Procedure.l StopwatchStop(watch_.i)
+    ProcedureReturn ZmqStopwatchStop(ZeroMQWrapper::dllInstance, watch_)
+  EndProcedure
+  
+  ; <summary>
   ; Sleep
   ; </summary>
   ; <param name="seconds_"></param>
@@ -291,8 +317,8 @@ Module ZmqHelper
   EndProcedure
 EndModule  
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 268
-; FirstLine = 236
+; CursorPosition = 269
+; FirstLine = 250
 ; Folding = ------
 ; EnableXP
 ; IncludeVersionInfo

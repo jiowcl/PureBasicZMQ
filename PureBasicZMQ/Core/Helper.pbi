@@ -4,12 +4,67 @@
 ;--------------------------------------------------------------------------------------------
 
 ; Prototype Function
+PrototypeC.i ZmqStopwatchStartFunc()
+PrototypeC.l ZmqStopwatchIntermediateFunc(watch_.i)
+PrototypeC.l ZmqStopwatchStopFunc(watch_.i);
 PrototypeC ZmqSleepFunc(seconds_.i)
-
 PrototypeC.i ZmqThreadstartFunc(*func_.ZmqThreadFnProc, arg_.i)
 PrototypeC ZmqThreadcloseFunc(thread_.i)
 
 ; Zmq Function Declare
+
+; <summary>
+; ZmqStopwatchStart
+; </summary>
+; <param name="dllInstance"></param>
+; <returns>Returns integer.</returns>
+Procedure.i ZmqStopwatchStart(dllInstance.i)
+  Protected.i lResult
+  Protected.ZmqStopwatchStartFunc pFuncCall
+  
+  If IsLibrary(dllInstance)
+    pFuncCall = GetFunction(dllInstance, "zmq_stopwatch_start")
+    lResult = pFuncCall()
+  EndIf
+  
+  ProcedureReturn lResult
+EndProcedure
+
+; <summary>
+; ZmqStopwatchIntermediate
+; </summary>
+; <param name="dllInstance"></param>
+; <param name="watch_"></param>
+; <returns>Returns long.</returns>
+Procedure.l ZmqStopwatchIntermediate(dllInstance.i, watch_.i)
+  Protected.l lResult
+  Protected.ZmqStopwatchIntermediateFunc pFuncCall
+  
+  If IsLibrary(dllInstance)
+    pFuncCall = GetFunction(dllInstance, "zmq_stopwatch_intermediate")
+    lResult = pFuncCall(watch_)
+  EndIf
+  
+  ProcedureReturn lResult
+EndProcedure
+
+; <summary>
+; ZmqStopwatchStop
+; </summary>
+; <param name="dllInstance"></param>
+; <param name="watch_"></param>
+; <returns>Returns long.</returns>
+Procedure.l ZmqStopwatchStop(dllInstance.i, watch_.i)
+  Protected.l lResult
+  Protected.ZmqStopwatchStopFunc pFuncCall
+  
+  If IsLibrary(dllInstance)
+    pFuncCall = GetFunction(dllInstance, "zmq_stopwatch_stop")
+    lResult = pFuncCall(watch_)
+  EndIf
+  
+  ProcedureReturn lResult
+EndProcedure
 
 ; <summary>
 ; ZmqSleep
@@ -60,8 +115,9 @@ Procedure ZmqThreadclose(dllInstance.i, thread_.i)
   EndIf
 EndProcedure
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 24
-; Folding = -
+; CursorPosition = 62
+; FirstLine = 24
+; Folding = --
 ; EnableXP
 ; IncludeVersionInfo
 ; VersionField2 = Inwazy Technology

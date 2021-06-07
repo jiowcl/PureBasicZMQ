@@ -27,13 +27,13 @@ Global hLibrary.i = ZmqDllOpen(lpszLibZmqDll)
 If hLibrary
   OpenConsole()
   
-  Define major.i = 0
-  Define minor.i = 0
-  Define patch.i = 0
-
-  ZmqVersion(hLibrary, @major, @minor, @patch)
-
-  PrintN("Zmq Version: " + major + minor + patch)
+  Define.i stopwatch = ZmqStopwatchStart(hLibrary)
+   
+  ZmqSleep(hLibrary, 2)
+  
+  Define.l stopwatchResult = ZmqStopwatchStop(hLibrary, stopwatch)
+  
+  PrintN("Stopwatch Time: " + stopwatchResult)
    
   Input()
   CloseConsole()
@@ -41,10 +41,10 @@ If hLibrary
   ZmqDllClose(hLibrary)
 EndIf
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 24
+; CursorPosition = 35
 ; Folding = -
 ; EnableXP
-; Executable = ..\Zmq.exe
+; Executable = ..\Stopwatch.exe
 ; CurrentDirectory = ../
 ; IncludeVersionInfo
 ; VersionField2 = Inwazy Technology
