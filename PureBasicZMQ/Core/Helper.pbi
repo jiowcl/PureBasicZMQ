@@ -24,7 +24,10 @@ Procedure.i ZmqStopwatchStart(dllInstance.i)
   
   If IsLibrary(dllInstance)
     pFuncCall = GetFunction(dllInstance, "zmq_stopwatch_start")
-    lResult = pFuncCall()
+    
+    If pFuncCall > 0
+      lResult = pFuncCall()
+    EndIf  
   EndIf
   
   ProcedureReturn lResult
@@ -42,7 +45,10 @@ Procedure.l ZmqStopwatchIntermediate(dllInstance.i, watch_.i)
   
   If IsLibrary(dllInstance)
     pFuncCall = GetFunction(dllInstance, "zmq_stopwatch_intermediate")
-    lResult = pFuncCall(watch_)
+    
+    If pFuncCall > 0
+      lResult = pFuncCall(watch_)
+    EndIf
   EndIf
   
   ProcedureReturn lResult
@@ -60,7 +66,10 @@ Procedure.l ZmqStopwatchStop(dllInstance.i, watch_.i)
   
   If IsLibrary(dllInstance)
     pFuncCall = GetFunction(dllInstance, "zmq_stopwatch_stop")
-    lResult = pFuncCall(watch_)
+    
+    If pFuncCall > 0
+      lResult = pFuncCall(watch_)
+    EndIf
   EndIf
   
   ProcedureReturn lResult
@@ -77,7 +86,10 @@ Procedure ZmqSleep(dllInstance.i, seconds_.i)
   
   If IsLibrary(dllInstance)
     pFuncCall = GetFunction(dllInstance, "zmq_sleep")
-    pFuncCall(seconds_)
+    
+    If pFuncCall > 0
+      pFuncCall(seconds_)
+    EndIf  
   EndIf
 EndProcedure
 
@@ -94,7 +106,10 @@ Procedure.i ZmqThreadstart(dllInstance.i, *func_.ZmqThreadFnProc, arg_.i)
   
   If IsLibrary(dllInstance)
     pFuncCall = GetFunction(dllInstance, "zmq_threadstart")
-    lResult = pFuncCall(*func_, arg_)
+    
+    If pFuncCall > 0
+      lResult = pFuncCall(*func_, arg_)
+    EndIf  
   EndIf
   
   ProcedureReturn lResult
@@ -111,12 +126,15 @@ Procedure ZmqThreadclose(dllInstance.i, thread_.i)
   
   If IsLibrary(dllInstance)
     pFuncCall = GetFunction(dllInstance, "zmq_threadclose")
-    pFuncCall(thread_)
+    
+    If pFuncCall > 0
+      pFuncCall(thread_)
+    EndIf  
   EndIf
 EndProcedure
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 62
-; FirstLine = 24
+; CursorPosition = 131
+; FirstLine = 83
 ; Folding = --
 ; EnableXP
 ; IncludeVersionInfo

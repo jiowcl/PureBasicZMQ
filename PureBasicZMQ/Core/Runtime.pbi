@@ -20,7 +20,10 @@ Procedure.i ZmqErrno(dllInstance.i)
   
   If IsLibrary(dllInstance)
     pFuncCall = GetFunction(dllInstance, "zmq_errno")
-    lResult = pFuncCall()
+    
+    If pFuncCall > 0
+      lResult = pFuncCall()
+    EndIf  
   EndIf
   
   ProcedureReturn lResult
@@ -39,11 +42,14 @@ Procedure ZmqVersion(dllInstance.i, *major.Integer, *minor.Integer, *patch.Integ
   
   If IsLibrary(dllInstance)
     pFuncCall = GetFunction(dllInstance, "zmq_version")
-    pFuncCall(*major, *minor, *patch)
+    
+    If pFuncCall > 0
+      pFuncCall(*major, *minor, *patch)
+    EndIf
   EndIf
 EndProcedure
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 13
+; CursorPosition = 47
 ; Folding = -
 ; EnableXP
 ; IncludeVersionInfo

@@ -31,7 +31,10 @@ Procedure.i ZmqSocket(dllInstance.i, s.i, type.i)
   
   If IsLibrary(dllInstance)
     pFuncCall = GetFunction(dllInstance, "zmq_socket")
-    lResult = pFuncCall(s, type)
+    
+    If pFuncCall > 0
+      lResult = pFuncCall(s, type)
+    EndIf
   EndIf
     
   ProcedureReturn lResult
@@ -50,7 +53,10 @@ Procedure.i ZmqBind(dllInstance.i, socket.i, addr.s)
   
   If IsLibrary(dllInstance)
     pFuncCall = GetFunction(dllInstance, "zmq_bind")
-    lResult = pFuncCall(socket, addr)
+    
+    If pFuncCall > 0
+      lResult = pFuncCall(socket, addr)
+    EndIf
   EndIf
   
   ProcedureReturn lResult
@@ -69,7 +75,10 @@ Procedure.i ZmqUnBind(dllInstance.i, socket.i, addr.s)
   
   If IsLibrary(dllInstance)
     pFuncCall = GetFunction(dllInstance, "zmq_unbind")
-    lResult = pFuncCall(socket, addr)
+    
+    If pFuncCall > 0
+      lResult = pFuncCall(socket, addr)
+    EndIf
   EndIf
   
   ProcedureReturn lResult
@@ -90,7 +99,10 @@ Procedure.i ZmqRecv(dllInstance.i, socket.i, *buf.String, len.i, flags.i)
   
   If IsLibrary(dllInstance)
     pFuncCall = GetFunction(dllInstance, "zmq_recv")
-    lResult = pFuncCall(socket, *buf, len, flags)
+    
+    If pFuncCall > 0
+      lResult = pFuncCall(socket, *buf, len, flags)
+    EndIf
   EndIf
   
   ProcedureReturn lResult
@@ -111,7 +123,10 @@ Procedure.i ZmqSend(dllInstance.i, socket.i, buf.s, len.i, flags.i)
   
   If IsLibrary(dllInstance)
     pFuncCall = GetFunction(dllInstance, "zmq_send")
-    lResult = pFuncCall(socket, buf, len, flags)
+    
+    If pFuncCall > 0
+      lResult = pFuncCall(socket, buf, len, flags)
+    EndIf
   EndIf
   
   ProcedureReturn lResult
@@ -132,7 +147,10 @@ Procedure.i ZmqSendConst(dllInstance.i, socket.i, buf.s, len.i, flags.i)
   
   If IsLibrary(dllInstance)
     pFuncCall = GetFunction(dllInstance, "zmq_send_const")
-    lResult = pFuncCall(socket, buf, len, flags)
+    
+    If pFuncCall > 0
+      lResult = pFuncCall(socket, buf, len, flags)
+    EndIf
   EndIf
   
   ProcedureReturn lResult
@@ -151,7 +169,10 @@ Procedure.i ZmqConnect(dllInstance.i, socket.i, addr.s)
   
   If IsLibrary(dllInstance)
     pFuncCall = GetFunction(dllInstance, "zmq_connect")
-    lResult = pFuncCall(socket, addr)
+    
+    If pFuncCall > 0
+      lResult = pFuncCall(socket, addr)
+    EndIf
   EndIf
   
   ProcedureReturn lResult
@@ -170,7 +191,10 @@ Procedure.i ZmqDisConnect(dllInstance.i, socket.i, addr.s)
   
   If IsLibrary(dllInstance)
     pFuncCall = GetFunction(dllInstance, "zmq_disconnect")
-    lResult = pFuncCall(socket, addr)
+    
+    If pFuncCall > 0
+      lResult = pFuncCall(socket, addr)
+    EndIf
   EndIf
   
   ProcedureReturn lResult
@@ -191,7 +215,10 @@ Procedure.i ZmqSetsockopt(dllInstance.i, socket.i, option.i, optval.s, optvallen
   
   If IsLibrary(dllInstance)
     pFuncCall = GetFunction(dllInstance, "zmq_setsockopt")
-    lResult = pFuncCall(socket, option, optval, optvallen)
+    
+    If pFuncCall > 0
+      lResult = pFuncCall(socket, option, optval, optvallen)
+    EndIf
   EndIf  
   
   ProcedureReturn lResult
@@ -212,7 +239,10 @@ Procedure.i ZmqGetsockopt(dllInstance.i, socket.i, option.i, *optval, optvallen.
   
   If IsLibrary(dllInstance)
     pFuncCall = GetFunction(dllInstance, "zmq_getsockopt")
-    lResult = pFuncCall(socket, option, *optval, optvallen)
+    
+    If pFuncCall > 0
+      lResult = pFuncCall(socket, option, *optval, optvallen)
+    EndIf
   EndIf  
   
   ProcedureReturn lResult
@@ -230,14 +260,17 @@ Procedure.i ZmqClose(dllInstance.i, socket.i)
   
   If IsLibrary(dllInstance)
     pFuncCall = GetFunction(dllInstance, "zmq_close")
-    lResult = pFuncCall(socket)
+    
+    If pFuncCall > 0
+      lResult = pFuncCall(socket)
+    EndIf
   EndIf
   
   ProcedureReturn lResult
 EndProcedure
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 236
-; FirstLine = 186
+; CursorPosition = 257
+; FirstLine = 219
 ; Folding = --
 ; EnableXP
 ; IncludeVersionInfo

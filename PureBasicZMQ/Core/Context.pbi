@@ -23,7 +23,10 @@ Procedure.i ZmqCtxNew(dllInstance.i)
   
   If IsLibrary(dllInstance)
     pFuncCall = GetFunction(dllInstance, "zmq_ctx_new")
-    lResult = pFuncCall()
+    
+    If pFuncCall > 0
+      lResult = pFuncCall()
+    EndIf
   EndIf
   
   ProcedureReturn lResult
@@ -41,7 +44,10 @@ Procedure.i ZmqCtxTerm(dllInstance.i, context.i)
   
   If IsLibrary(dllInstance)
     pFuncCall = GetFunction(dllInstance, "zmq_ctx_term")
-    lResult = pFuncCall(context)
+    
+    If pFuncCall > 0
+      lResult = pFuncCall(context)
+    EndIf
   EndIf
   
   ProcedureReturn lResult
@@ -59,7 +65,10 @@ Procedure.i ZmqCtxShutdown(dllInstance.i, context.i)
   
   If IsLibrary(dllInstance)
     pFuncCall = GetFunction(dllInstance, "zmq_ctx_shutdown")
-    lResult = pFuncCall(context)
+    
+    If pFuncCall > 0
+      lResult = pFuncCall(context)
+    EndIf
   EndIf
   
   ProcedureReturn lResult
@@ -79,7 +88,10 @@ Procedure.i ZmqCtxSet(dllInstance.i, context.i, option.i, optval.i)
   
   If IsLibrary(dllInstance)
     pFuncCall = GetFunction(dllInstance, "zmq_ctx_set")
-    lResult = pFuncCall(context, option, optval)
+    
+    If pFuncCall > 0
+      lResult = pFuncCall(context, option, optval)
+    EndIf
   EndIf
   
   ProcedureReturn lResult
@@ -98,14 +110,16 @@ Procedure.i ZmqCtxGet(dllInstance.i, context.i, option.i)
   
   If IsLibrary(dllInstance)
     pFuncCall = GetFunction(dllInstance, "zmq_ctx_get")
-    lResult = pFuncCall(context, option)
+    
+    If pFuncCall > 0
+      lResult = pFuncCall(context, option)
+    EndIf
   EndIf
   
   ProcedureReturn lResult
 EndProcedure
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 89
-; FirstLine = 54
+; CursorPosition = 25
 ; Folding = -
 ; EnableXP
 ; IncludeVersionInfo
