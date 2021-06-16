@@ -65,7 +65,7 @@ Module ZeroMQWrapper
       ProcedureReturn dllInstance
     EndIf
     
-    dllInstance = ZmqDllOpen(lpszDllPath.s)
+    dllInstance = ZmqDllOpen(lpszDllPath)
     
     ProcedureReturn dllInstance
   EndProcedure
@@ -321,8 +321,8 @@ Module ZmqHelper
   EndProcedure
 EndModule  
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 46
-; FirstLine = 16
+; CursorPosition = 67
+; FirstLine = 31
 ; Folding = ------
 ; EnableXP
 ; IncludeVersionInfo
