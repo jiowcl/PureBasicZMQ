@@ -42,6 +42,10 @@ EndDeclareModule
 DeclareModule ZmqHelper
   IncludeFile "Enums.pbi"
   
+  Declare.i StopwatchStart()
+  Declare.l StopwatchIntermediate(watch_.i)
+  Declare.l StopwatchStop(watch_.i)
+    
   Declare Sleep(seconds_.i)
   Declare.i Threadstart(*func_.ZmqThreadFnProc, arg_.i)
   Declare Threadclose(thread_.i)
@@ -317,8 +321,8 @@ Module ZmqHelper
   EndProcedure
 EndModule  
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 269
-; FirstLine = 250
+; CursorPosition = 46
+; FirstLine = 16
 ; Folding = ------
 ; EnableXP
 ; IncludeVersionInfo
