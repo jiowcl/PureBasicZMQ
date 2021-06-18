@@ -174,7 +174,7 @@ Module ZmqSocket
   ; Recv
   ; </summary>
   ; <param name="socket"></param>
-  ; <param name="buf"></param>
+  ; <param name="*buf"></param>
   ; <param name="len"></param>
   ; <param name="flags"></param>
   ; <returns>Returns integer.</returns>
@@ -243,7 +243,7 @@ Module ZmqSocket
   ; </summary>
   ; <param name="socket"></param>
   ; <param name="option"></param>
-  ; <param name="optval"></param>
+  ; <param name="*optval"></param>
   ; <param name="optvallen"></param>
   ; <returns>Returns integer.</returns>
   Procedure.i Getsockopt(socket.i, option.i, *optval, optvallen.i)
@@ -256,7 +256,7 @@ Module ZmqSocket
   ; <param name="socket"></param>
   ; <returns>Returns integer.</returns>
   Procedure.i Close(socket.i)
-    ProcedureReturn ZmqClose(ZeroMQWrapper::dllInstance, socket.i)
+    ProcedureReturn ZmqClose(ZeroMQWrapper::dllInstance, socket)
   EndProcedure  
 EndModule
 
@@ -321,8 +321,8 @@ Module ZmqHelper
   EndProcedure
 EndModule  
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 67
-; FirstLine = 31
+; CursorPosition = 176
+; FirstLine = 163
 ; Folding = ------
 ; EnableXP
 ; IncludeVersionInfo
