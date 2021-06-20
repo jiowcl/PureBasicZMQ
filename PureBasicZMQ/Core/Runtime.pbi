@@ -4,7 +4,8 @@
 ;--------------------------------------------------------------------------------------------
 
 ; Prototype Function
-PrototypeC ZmqErrnoFunc()
+PrototypeC.i ZmqErrnoFunc()
+PrototypeC.i ZmqStrerrorFunc(errnum_.i)
 PrototypeC ZmqVersionFunc(*major.Integer, *minor.Integer, *patch.Integer)
 
 ; Zmq Function Declare
@@ -23,6 +24,27 @@ Procedure.i ZmqErrno(dllInstance.i)
     
     If pFuncCall > 0
       lResult = pFuncCall()
+    EndIf  
+  EndIf
+  
+  ProcedureReturn lResult
+EndProcedure
+
+; <summary>
+; ZmqStrerror
+; </summary>
+; <param name="dllInstance"></param>
+; <param name="errnum_"></param>
+; <returns>Returns string.</returns>
+Procedure.s ZmqStrerror(dllInstance.i, errnum_.i)
+  Protected.s lResult
+  Protected.ZmqStrerrorFunc pFuncCall
+  
+  If IsLibrary(dllInstance)
+    pFuncCall = GetFunction(dllInstance, "zmq_strerror")
+    
+    If pFuncCall > 0
+      lResult = PeekS(pFuncCall(errnum_), -1, #PB_UTF8)
     EndIf  
   EndIf
   
@@ -49,7 +71,7 @@ Procedure ZmqVersion(dllInstance.i, *major.Integer, *minor.Integer, *patch.Integ
   EndIf
 EndProcedure
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 47
+; CursorPosition = 38
 ; Folding = -
 ; EnableXP
 ; IncludeVersionInfo

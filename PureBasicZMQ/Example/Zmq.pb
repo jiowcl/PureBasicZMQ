@@ -34,14 +34,14 @@ If hLibrary
   ZmqVersion(hLibrary, @major, @minor, @patch)
 
   PrintN("Zmq Version: " + major + minor + patch)
-   
+  
   Input()
   CloseConsole()
   
   ZmqDllClose(hLibrary)
 EndIf
 ; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 24
+; CursorPosition = 37
 ; Folding = -
 ; EnableXP
 ; Executable = ..\Zmq.exe
