@@ -6,9 +6,9 @@ ZMQ Wrapper for PureBasic Programming Language.
 
 ## Environment
 
-- Windows 7 above (recommend)
-- PureBasic 5.0 above (recommend)
-- [ZeroMQ](https://github.com/zeromq)
+- Windows 7 above (recommend)  
+- PureBasic 5.0 above (recommend)  
+- [ZeroMQ](https://github.com/zeromq)  
 
 ## How to Build
 
@@ -122,12 +122,11 @@ EndIf
 ## License
 
 Copyright (c) 2017-2021 Ji-Feng Tsai.  
-
-Code released under the MIT license.
+Code released under the MIT license.  
 
 ## TODO
 
-- More examples
+- More examples  
 
 ## Donation
 
