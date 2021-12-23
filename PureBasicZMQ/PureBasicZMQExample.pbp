@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://www.purebasic.com/namespace" version="1.0" creator="PureBasic 5.72 (Windows - x86)">
+<project xmlns="http://www.purebasic.com/namespace" version="1.0" creator="PureBasic 5.72 (Windows - x64)">
   <section name="config">
     <options closefiles="1" openmode="0" name="PureBasicZMQ Examples"/>
   </section>
   <section name="data">
     <explorer view="Example\" pattern="0"/>
     <log show="1"/>
-    <lastopen date="2021-06-07 23:29" user="Fred" host="DESKTOP-ATREA"/>
+    <lastopen date="2021-12-23 21:12" user="Fred" host="DESKTOP-AKUI43D"/>
   </section>
   <section name="files">
     <file name="Example\Module\PubServer.pb">
@@ -26,37 +26,37 @@
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="+++"/>
       <fingerprint md5="f06c803215982a72ad3223e944e387aa"/>
     </file>
+    <file name="Example\Module\Thread.pb">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+++"/>
+      <fingerprint md5="513776b4715e45b97a0683d4ac950fd1"/>
+    </file>
+    <file name="Example\Msg.pb">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
+      <fingerprint md5="dae1621be17a6d3c34146cda8562a045"/>
+    </file>
     <file name="Example\PubServer.pb">
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="++"/>
       <fingerprint md5="f40905cbad9af988137b4fc9a470e51a"/>
     </file>
     <file name="Example\RepServer.pb">
-      <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="++"/>
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
       <fingerprint md5="c9e5151c67707b82a4128e8df79bc6a4"/>
     </file>
     <file name="Example\ReqClient.pb">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
       <fingerprint md5="ba341e5cc90ff7b28f34a83946cd55c7"/>
     </file>
-    <file name="Example\SubClient.pb">
-      <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="++"/>
-      <fingerprint md5="3bb29edc01f0d03c691c5ebba31d7692"/>
-    </file>
-    <file name="Example\Thread.pb">
-      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
-      <fingerprint md5="5c6cf9ed0d7aab2acce9384f698b3469"/>
-    </file>
-    <file name="Example\Zmq.pb">
-      <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="++"/>
-      <fingerprint md5="91b6bdd76bf18d4df0033c0e2641800f"/>
-    </file>
     <file name="Example\Stopwatch.pb">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
       <fingerprint md5="9ad3f346e4e3da20141f636972742ccf"/>
     </file>
-    <file name="Example\Module\Thread.pb">
-      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+++"/>
-      <fingerprint md5="513776b4715e45b97a0683d4ac950fd1"/>
+    <file name="Example\SubClient.pb">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="++"/>
+      <fingerprint md5="53ef8e5739a9076b354f904a1025567d"/>
+    </file>
+    <file name="Example\Thread.pb">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
+      <fingerprint md5="5c6cf9ed0d7aab2acce9384f698b3469"/>
     </file>
     <file name="Example\Weather\WeatherPubServer.pb">
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="+++"/>
@@ -65,6 +65,14 @@
     <file name="Example\Weather\WeatherSubClient.pb">
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="+++"/>
       <fingerprint md5="02d8ef8e87fd303cfe5ce042a851ff5c"/>
+    </file>
+    <file name="Example\Zmq.pb">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="++"/>
+      <fingerprint md5="25a50fb7200e4b1455ac56a8ecc5ee09"/>
+    </file>
+    <file name="Example\Module\Msg.pb">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+++"/>
+      <fingerprint md5="c39aff7cefee522f24c04d559942cbf3"/>
     </file>
   </section>
   <section name="targets">

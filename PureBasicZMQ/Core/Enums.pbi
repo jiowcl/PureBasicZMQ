@@ -121,11 +121,17 @@
 #ZMQ_DONTWAIT = 1
 #ZMQ_SNDMORE  = 2
 
+; Structure
+Structure ZmqMsgT
+  _.s{64}
+EndStructure
+
 ; Callback Function
 PrototypeC ZmqThreadFnProc(vData.i)
-; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 124
-; FirstLine = 74
+PrototypeC ZmqFreeFnProc(vData.i, vHint.i)
+; IDE Options = PureBasic 5.72 (Windows - x64)
+; CursorPosition = 126
+; FirstLine = 77
 ; EnableXP
 ; IncludeVersionInfo
 ; VersionField2 = Inwazy Technology

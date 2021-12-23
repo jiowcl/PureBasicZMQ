@@ -72,8 +72,8 @@ If hLibrary
   
   ZmqDllClose(hLibrary)
 EndIf
-; IDE Options = PureBasic 5.72 (Windows - x64)
-; CursorPosition = 11
+; IDE Options = PureBasic 5.72 (Windows - x86)
+; CursorPosition = 24
 ; Folding = -
 ; EnableXP
 ; Executable = ..\SubClient.exe

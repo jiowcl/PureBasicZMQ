@@ -38,6 +38,26 @@ DeclareModule ZmqSocket
   Declare.i Close(socket.i)
 EndDeclareModule  
 
+; Declare Module ZmqMsg
+DeclareModule ZmqMsg
+  IncludeFile "Enums.pbi"
+    
+  Declare.i Init(*msg.ZmqMsgT)
+  Declare.i InitSize(*msg.ZmqMsgT, size.i)
+  Declare.i InitData(*msg.ZmqMsgT, vData.i, size.i, *ffn.ZmqFreeFnProc, hint.i)
+  Declare.i Send(*msg.ZmqMsgT, socket.i, flags.i)
+  Declare.i Recv(*msg.ZmqMsgT, socket.i, flags.i)
+  Declare.i Close(*msg.ZmqMsgT)
+  Declare.i Move(*destmsg.ZmqMsgT, *srcmsg.ZmqMsgT)
+  Declare.i Copy(*destmsg.ZmqMsgT, *srcmsg.ZmqMsgT)
+  Declare.i ZData(*msg.ZmqMsgT)
+  Declare.i Size(*msg.ZmqMsgT)
+  Declare.i More(*msg.ZmqMsgT)
+  Declare.i Get(*msg.ZmqMsgT, property.i)
+  Declare.i Set(*msg.ZmqMsgT, property.i, optval.i)
+  Declare.s Gets(*msg.ZmqMsgT, property.s)
+EndDeclareModule   
+
 ; Declare Module ZmqHelper
 DeclareModule ZmqHelper
   IncludeFile "Enums.pbi"
@@ -260,6 +280,155 @@ Module ZmqSocket
   EndProcedure  
 EndModule
 
+; Module ZmqMsg
+Module ZmqMsg
+  ;IncludeFile "Enums.pbi"
+  IncludeFile "Msg.pbi"
+  
+  UseModule ZeroMQWrapper
+  
+  ; <summary>
+  ; Init
+  ; </summary>
+  ; <param name="*msg"></param>
+  ; <returns>Returns integer.</returns>
+  Procedure.i Init(*msg.ZmqMsgT)
+    ProcedureReturn ZmqMsgInit(ZeroMQWrapper::dllInstance, *msg)
+  EndProcedure
+
+  ; <summary>
+  ; InitSize
+  ; </summary>
+  ; <param name="*msg"></param>
+  ; <param name="size"></param>
+  ; <returns>Returns integer.</returns>
+  Procedure.i InitSize(*msg.ZmqMsgT, size.i) 
+    ProcedureReturn ZmqMsgInitSize(ZeroMQWrapper::dllInstance, *msg, size)
+  EndProcedure
+
+  ; <summary>
+  ; InitData
+  ; </summary>
+  ; <param name="*msg"></param>
+  ; <param name="vdata"></param>
+  ; <param name="size"></param>
+  ; <param name="*ffn"></param>
+  ; <param name="hint"></param>
+  ; <returns>Returns integer.</returns>
+  Procedure.i InitData(*msg.ZmqMsgT, vdata.i, size.i, *ffn.ZmqFreeFnProc, hint.i) 
+    ProcedureReturn ZmqMsgInitData(ZeroMQWrapper::dllInstance, *msg, vdata, size, *ffn, hint)
+  EndProcedure
+
+  ; <summary>
+  ; Send
+  ; </summary>
+  ; <param name="*msg"></param>
+  ; <param name="socket"></param>
+  ; <param name="flags"></param>
+  ; <returns>Returns integer.</returns>
+  Procedure.i Send(*msg.ZmqMsgT, socket.i, flags.i) 
+    ProcedureReturn ZmqMsgSend(ZeroMQWrapper::dllInstance, *msg.ZmqMsgT, socket, flags)
+  EndProcedure
+
+  ; <summary>
+  ; Recv
+  ; </summary>
+  ; <param name="*msg"></param>
+  ; <param name="socket"></param>
+  ; <param name="flags"></param>
+  ; <returns>Returns integer.</returns>
+  Procedure.i Recv(*msg.ZmqMsgT, socket.i, flags.i) 
+    ProcedureReturn ZmqMsgRecv(ZeroMQWrapper::dllInstance, *msg.ZmqMsgT, socket, flags)
+  EndProcedure
+
+  ; <summary>
+  ; Close
+  ; </summary>
+  ; <param name="*msg"></param>
+  ; <returns>Returns integer.</returns>
+  Procedure.i Close(*msg.ZmqMsgT) 
+    ProcedureReturn ZmqMsgClose(ZeroMQWrapper::dllInstance, *msg.ZmqMsgT)
+  EndProcedure
+
+  ; <summary>
+  ; Move
+  ; </summary>
+  ; <param name="*destmsg"></param>
+  ; <param name="*srcmsg"></param>
+  ; <returns>Returns integer.</returns>
+  Procedure.i Move(*destmsg.ZmqMsgT, *srcmsg.ZmqMsgT) 
+    ProcedureReturn ZmqMsgMove(ZeroMQWrapper::dllInstance, *destmsg, *srcmsg)
+  EndProcedure
+
+  ; <summary>
+  ; Copy
+  ; </summary>
+  ; <param name="*destmsg"></param>
+  ; <param name="*srcmsg"></param>
+  ; <returns>Returns integer.</returns>
+  Procedure.i Copy(*destmsg.ZmqMsgT, *srcmsg.ZmqMsgT) 
+    ProcedureReturn ZmqMsgCopy(ZeroMQWrapper::dllInstance, *destmsg, *srcmsg)
+  EndProcedure
+
+  ; <summary>
+  ; ZData
+  ; </summary>
+  ; <param name="*msg"></param>
+  ; <returns>Returns integer.</returns>
+  Procedure.i ZData(*msg.ZmqMsgT) 
+    ProcedureReturn ZmqMsgData(ZeroMQWrapper::dllInstance, *msg)
+  EndProcedure
+
+  ; <summary>
+  ; Size
+  ; </summary>
+  ; <param name="*msg"></param>
+  ; <returns>Returns integer.</returns>
+  Procedure.i Size(*msg.ZmqMsgT) 
+    ProcedureReturn ZmqMsgSize(ZeroMQWrapper::dllInstance, *msg)
+  EndProcedure
+
+  ; <summary>
+  ; More
+  ; </summary>
+  ; <param name="*msg"></param>
+  ; <returns>Returns integer.</returns>
+  Procedure.i More(*msg.ZmqMsgT) 
+    ProcedureReturn ZmqMsgMore(ZeroMQWrapper::dllInstance, *msg)
+  EndProcedure
+
+  ; <summary>
+  ; Get
+  ; </summary>
+  ; <param name="*msg"></param>
+  ; <param name="property"></param>
+  ; <returns>Returns integer.</returns>
+  Procedure.i Get(*msg.ZmqMsgT, property.i) 
+    ProcedureReturn ZmqMsgGet(ZeroMQWrapper::dllInstance, *msg, property)
+  EndProcedure
+  
+  ; <summary>
+  ; Set
+  ; </summary>
+  ; <param name="*msg"></param>
+  ; <param name="property"></param>
+  ; <param name="optval"></param>
+  ; <returns>Returns integer.</returns>
+  Procedure.i Set(*msg.ZmqMsgT, property.i, optval.i)
+    ProcedureReturn ZmqMsgSet(ZeroMQWrapper::dllInstance, *msg, property, optval)
+  EndProcedure
+  
+  ; <summary>
+  ; Gets
+  ; </summary>
+  ; <param name="*msg"></param>
+  ; <param name="property"></param>
+  ; <returns>Returns string.</returns>
+  Procedure.s Gets(*msg.ZmqMsgT, property.s) 
+    ProcedureReturn ZmqMsgGets(ZeroMQWrapper::dllInstance, *msg, property)
+  EndProcedure
+EndModule  
+
 ; Module ZmqHelper
 Module ZmqHelper
   IncludeFile "Helper.pbi"
@@ -320,10 +489,10 @@ Module ZmqHelper
     ZmqThreadclose(ZeroMQWrapper::dllInstance, thread_)
   EndProcedure
 EndModule  
-; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 176
-; FirstLine = 163
-; Folding = ------
+; IDE Options = PureBasic 5.72 (Windows - x64)
+; CursorPosition = 57
+; FirstLine = 27
+; Folding = ---------
 ; EnableXP
 ; IncludeVersionInfo
 ; VersionField2 = Inwazy Technology

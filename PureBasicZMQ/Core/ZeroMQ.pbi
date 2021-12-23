@@ -8,10 +8,11 @@ XIncludeFile "Enums.pbi"
 XIncludeFile "Runtime.pbi"
 XIncludeFile "Context.pbi"
 XIncludeFile "Socket.pbi"
+XIncludeFile "Msg.pbi"
 XIncludeFile "Helper.pbi"
 
 ; TODO
-; IDE Options = PureBasic 5.72 (Windows - x86)
+; IDE Options = PureBasic 5.72 (Windows - x64)
 ; CursorPosition = 10
 ; EnableXP
 ; IncludeVersionInfo
