@@ -48,7 +48,7 @@ ProcedureC TestZmqThreadRepProc(vData.i)
     ZmqMsg::Init(vMsgSend)
     ZmqMsg::InitSize(vMsgSend, 32)
     
-    PokeS(ZmqMsg::ZData(vMsgSend), "Hi ", 32, #PB_UTF8)
+    PokeS(ZmqMsg::ZData(vMsgSend), "Hi ", -1, #PB_UTF8)
     
     ZmqMsg::Recv(vMsgRecv, Socket, 0)
     
@@ -79,7 +79,7 @@ ProcedureC TestZmqThreadReqProc(vData.i)
     ZmqMsg::Init(vMsgSend)
     ZmqMsg::InitSize(vMsgSend, 32)
     
-    PokeS(ZmqMsg::ZData(vMsgSend), "From Client", 32, #PB_UTF8)
+    PokeS(ZmqMsg::ZData(vMsgSend), "From Client", -1, #PB_UTF8)
     
     ZmqMsg::Send(vMsgSend, Socket, 0)
     
@@ -124,8 +124,8 @@ If DllOpen(lpszLibZmqDll)
   DllClose()
 EndIf
 ; IDE Options = PureBasic 5.72 (Windows - x64)
-; CursorPosition = 81
-; FirstLine = 50
+; CursorPosition = 50
+; FirstLine = 38
 ; Folding = -
 ; EnableXP
 ; Executable = ..\..\ModuleMsg.exe

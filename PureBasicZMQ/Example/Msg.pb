@@ -47,7 +47,7 @@ ProcedureC TestZmqThreadRepProc(vData.i)
     ZmqMsgInit(hLibrary, vMsgSend)
     ZmqMsgInitSize(hLibrary, vMsgSend, 32)
     
-    PokeS(ZmqMsgData(hLibrary, vMsgSend), "Hi ", 32, #PB_UTF8)
+    PokeS(ZmqMsgData(hLibrary, vMsgSend), "Hi ", -1, #PB_UTF8)
     
     ZmqMsgRecv(hLibrary, vMsgRecv, Socket, 0)
     
@@ -78,7 +78,7 @@ ProcedureC TestZmqThreadReqProc(vData.i)
     ZmqMsgInit(hLibrary, vMsgSend)
     ZmqMsgInitSize(hLibrary, vMsgSend, 32)
     
-    PokeS(ZmqMsgData(hLibrary, vMsgSend), "From Client", 32, #PB_UTF8)
+    PokeS(ZmqMsgData(hLibrary, vMsgSend), "From Client", -1, #PB_UTF8)
     
     ZmqMsgSend(hLibrary, vMsgSend, Socket, 0)
     
@@ -123,8 +123,8 @@ If hLibrary
   ZmqDllClose(hLibrary)
 EndIf
 ; IDE Options = PureBasic 5.72 (Windows - x64)
-; CursorPosition = 59
-; FirstLine = 36
+; CursorPosition = 49
+; FirstLine = 37
 ; Folding = -
 ; EnableXP
 ; Executable = ..\Msg.exe

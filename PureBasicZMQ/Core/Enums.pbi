@@ -123,15 +123,15 @@
 
 ; Structure
 Structure ZmqMsgT
-  _.s{64}
+  _.b[64] ; _.s{64}
 EndStructure
 
 ; Callback Function
 PrototypeC ZmqThreadFnProc(vData.i)
 PrototypeC ZmqFreeFnProc(vData.i, vHint.i)
 ; IDE Options = PureBasic 5.72 (Windows - x64)
-; CursorPosition = 126
-; FirstLine = 77
+; CursorPosition = 125
+; FirstLine = 80
 ; EnableXP
 ; IncludeVersionInfo
 ; VersionField2 = Inwazy Technology
