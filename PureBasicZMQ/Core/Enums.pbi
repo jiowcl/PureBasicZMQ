@@ -117,9 +117,84 @@
 #ZMQ_MORE   = 1
 #ZMQ_SHARED = 3
 
-; Send/recv Options
+; Send/Recv Options
 #ZMQ_DONTWAIT = 1
 #ZMQ_SNDMORE  = 2
+
+; Errors
+#ZMQ_HAUSNUMERO  = 156384712
+
+CompilerIf Not Defined(ENOTSUP, #PB_Constant)
+  #ENOTSUP         = #ZMQ_HAUSNUMERO + 1    
+CompilerEndIf
+
+CompilerIf Not Defined(EPROTONOSUPPORT, #PB_Constant)
+  #EPROTONOSUPPORT = #ZMQ_HAUSNUMERO + 2   
+CompilerEndIf
+
+CompilerIf Not Defined(ENOBUFS, #PB_Constant)
+  #ENOBUFS         = #ZMQ_HAUSNUMERO + 3
+CompilerEndIf
+
+CompilerIf Not Defined(ENETDOWN, #PB_Constant)
+  #ENETDOWN        = #ZMQ_HAUSNUMERO + 4
+CompilerEndIf
+
+CompilerIf Not Defined(EADDRINUSE, #PB_Constant)
+  #EADDRINUSE      = #ZMQ_HAUSNUMERO + 5
+CompilerEndIf
+
+CompilerIf Not Defined(EADDRNOTAVAIL, #PB_Constant)
+  #EADDRNOTAVAIL   = #ZMQ_HAUSNUMERO + 6
+CompilerEndIf
+
+CompilerIf Not Defined(ECONNREFUSED, #PB_Constant)
+  #ECONNREFUSED    = #ZMQ_HAUSNUMERO + 7
+CompilerEndIf
+
+CompilerIf Not Defined(EINPROGRESS, #PB_Constant)
+  #EINPROGRESS     = #ZMQ_HAUSNUMERO + 8
+CompilerEndIf
+
+CompilerIf Not Defined(ENOTSOCK, #PB_Constant)
+  #ENOTSOCK        = #ZMQ_HAUSNUMERO + 9
+CompilerEndIf
+
+CompilerIf Not Defined(EMSGSIZE, #PB_Constant)
+  #EMSGSIZE        = #ZMQ_HAUSNUMERO + 10
+CompilerEndIf
+
+CompilerIf Not Defined(EAFNOSUPPORT, #PB_Constant)
+  #EAFNOSUPPORT    = #ZMQ_HAUSNUMERO + 11
+CompilerEndIf
+
+CompilerIf Not Defined(ENETUNREACH , #PB_Constant)
+  #ENETUNREACH     = #ZMQ_HAUSNUMERO + 12
+CompilerEndIf
+
+CompilerIf Not Defined(ECONNABORTED , #PB_Constant)
+  #ECONNABORTED    = #ZMQ_HAUSNUMERO + 13
+CompilerEndIf
+
+CompilerIf Not Defined(ECONNRESET , #PB_Constant)
+  #ECONNRESET      = #ZMQ_HAUSNUMERO + 14
+CompilerEndIf
+
+CompilerIf Not Defined(ENOTCONN , #PB_Constant)
+  #ENOTCONN        = #ZMQ_HAUSNUMERO + 15
+CompilerEndIf
+
+CompilerIf Not Defined(ETIMEDOUT , #PB_Constant)
+  #ETIMEDOUT       = #ZMQ_HAUSNUMERO + 16
+CompilerEndIf
+
+CompilerIf Not Defined(EHOSTUNREACH , #PB_Constant)
+  #EHOSTUNREACH    = #ZMQ_HAUSNUMERO + 17
+CompilerEndIf
+
+CompilerIf Not Defined(ENETRESET , #PB_Constant)
+  #ENETRESET       = #ZMQ_HAUSNUMERO + 18
+CompilerEndIf
 
 ; Structure
 Structure ZmqMsgT
@@ -130,8 +205,9 @@ EndStructure
 PrototypeC ZmqThreadFnProc(vData.i)
 PrototypeC ZmqFreeFnProc(vData.i, vHint.i)
 ; IDE Options = PureBasic 5.72 (Windows - x64)
-; CursorPosition = 125
-; FirstLine = 80
+; CursorPosition = 197
+; FirstLine = 152
+; Folding = ----
 ; EnableXP
 ; IncludeVersionInfo
 ; VersionField2 = Inwazy Technology
