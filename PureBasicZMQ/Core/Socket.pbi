@@ -5,6 +5,7 @@
 
 ; Prototype Function
 PrototypeC.i ZmqSocketFunc(s.i, type.i)
+PrototypeC.i ZmqSocketMonitorFunc(socket.i, addr.p-Ascii, events.i)
 PrototypeC.i ZmqBindFunc(socket.i, addr.p-Ascii)
 PrototypeC.i ZmqUnBindFunc(socket.i, addr.p-Ascii)
 PrototypeC.i ZmqRecvFunc(socket.i, *buf.p-Ascii, len.i, flags.i)
@@ -37,6 +38,29 @@ Procedure.i ZmqSocket(dllInstance.i, s.i, type.i)
     EndIf
   EndIf
     
+  ProcedureReturn lResult
+EndProcedure
+
+; <summary>
+; ZmqSocketMonitor
+; </summary>
+; <param name="dllInstance"></param>
+; <param name="socket"></param>
+; <param name="addr"></param>
+; <param name="events"></param>
+; <returns>Returns integer.</returns>
+Procedure.i ZmqSocketMonitor(dllInstance.i, socket.i, addr.s, events.i)
+  Protected.i lResult
+  Protected.ZmqSocketMonitorFunc pFuncCall
+  
+  If IsLibrary(dllInstance)
+    pFuncCall = GetFunction(dllInstance, "zmq_socket_monitor")
+    
+    If pFuncCall > 0
+      lResult = pFuncCall(socket, addr, events)
+    EndIf
+  EndIf
+  
   ProcedureReturn lResult
 EndProcedure
 
@@ -268,10 +292,10 @@ Procedure.i ZmqClose(dllInstance.i, socket.i)
   
   ProcedureReturn lResult
 EndProcedure
-; IDE Options = PureBasic 5.72 (Windows - x86)
-; CursorPosition = 257
-; FirstLine = 219
-; Folding = --
+; IDE Options = PureBasic 5.72 (Windows - x64)
+; CursorPosition = 59
+; FirstLine = 18
+; Folding = ---
 ; EnableXP
 ; IncludeVersionInfo
 ; VersionField2 = Inwazy Technology

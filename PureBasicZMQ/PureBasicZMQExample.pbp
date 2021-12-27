@@ -7,9 +7,13 @@
   <section name="data">
     <explorer view="Example\" pattern="0"/>
     <log show="1"/>
-    <lastopen date="2021-12-23 21:12" user="Fred" host="DESKTOP-AKUI43D"/>
+    <lastopen date="2021-12-27 22:30" user="Fred" host="DESKTOP-AKUI43D"/>
   </section>
   <section name="files">
+    <file name="Example\Module\Msg.pb">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+++"/>
+      <fingerprint md5="79efdd3e0761b68b48fd40332b44263e"/>
+    </file>
     <file name="Example\Module\PubServer.pb">
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="+++"/>
       <fingerprint md5="d37cbb72a0168e2f5a9b686c99705578"/>
@@ -30,9 +34,13 @@
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+++"/>
       <fingerprint md5="513776b4715e45b97a0683d4ac950fd1"/>
     </file>
+    <file name="Example\Mointor.pb">
+      <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
+      <fingerprint md5="83c0fcd0e6415dd3d851a548f39da785"/>
+    </file>
     <file name="Example\Msg.pb">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
-      <fingerprint md5="dae1621be17a6d3c34146cda8562a045"/>
+      <fingerprint md5="bebeffb7062c746a43c79c041ec81c1c"/>
     </file>
     <file name="Example\PubServer.pb">
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="++"/>
@@ -40,7 +48,7 @@
     </file>
     <file name="Example\RepServer.pb">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
-      <fingerprint md5="c9e5151c67707b82a4128e8df79bc6a4"/>
+      <fingerprint md5="424a3134483d5293fdda18d3b410f9ab"/>
     </file>
     <file name="Example\ReqClient.pb">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="++"/>
@@ -70,9 +78,9 @@
       <config load="0" scan="1" panel="1" warn="1" lastopen="0" panelstate="++"/>
       <fingerprint md5="25a50fb7200e4b1455ac56a8ecc5ee09"/>
     </file>
-    <file name="Example\Module\Msg.pb">
+    <file name="Example\Module\Monitor.pb">
       <config load="0" scan="1" panel="1" warn="1" lastopen="1" panelstate="+++"/>
-      <fingerprint md5="c39aff7cefee522f24c04d559942cbf3"/>
+      <fingerprint md5="9cbb4111ed1294054bd0e3e3a5c311e2"/>
     </file>
   </section>
   <section name="targets">

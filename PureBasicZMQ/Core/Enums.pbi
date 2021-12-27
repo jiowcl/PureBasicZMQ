@@ -121,6 +121,20 @@
 #ZMQ_DONTWAIT = 1
 #ZMQ_SNDMORE  = 2
 
+; Socket Transport Events (TCP, IPC and TIPC only)
+#ZMQ_EVENT_CONNECTED       = $0001
+#ZMQ_EVENT_CONNECT_DELAYED = $0002
+#ZMQ_EVENT_CONNECT_RETRIED = $0004
+#ZMQ_EVENT_LISTENING       = $0008
+#ZMQ_EVENT_BIND_FAILED     = $0010
+#ZMQ_EVENT_ACCEPTED        = $0020
+#ZMQ_EVENT_ACCEPT_FAILED   = $0040
+#ZMQ_EVENT_CLOSED          = $0080
+#ZMQ_EVENT_CLOSE_FAILED    = $0100
+#ZMQ_EVENT_DISCONNECTED    = $0200
+#ZMQ_EVENT_MONITOR_STOPPED = $0400
+#ZMQ_EVENT_ALL             = $FFFF
+
 ; Errors
 #ZMQ_HAUSNUMERO  = 156384712
 
@@ -196,17 +210,23 @@ CompilerIf Not Defined(ENETRESET , #PB_Constant)
   #ENETRESET       = #ZMQ_HAUSNUMERO + 18
 CompilerEndIf
 
+; Native Errors
+#EFSM            = #ZMQ_HAUSNUMERO + 51
+#ENOCOMPATPROTO  = #ZMQ_HAUSNUMERO + 52
+#ETERM           = #ZMQ_HAUSNUMERO + 53
+#EMTHREAD        = #ZMQ_HAUSNUMERO + 54
+
 ; Structure
 Structure ZmqMsgT
-  _.b[64] ; _.s{64}
+  _.b[64]
 EndStructure
 
 ; Callback Function
 PrototypeC ZmqThreadFnProc(vData.i)
 PrototypeC ZmqFreeFnProc(vData.i, vHint.i)
 ; IDE Options = PureBasic 5.72 (Windows - x64)
-; CursorPosition = 197
-; FirstLine = 152
+; CursorPosition = 215
+; FirstLine = 171
 ; Folding = ----
 ; EnableXP
 ; IncludeVersionInfo

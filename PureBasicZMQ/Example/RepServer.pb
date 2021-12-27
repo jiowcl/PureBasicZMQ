@@ -31,6 +31,7 @@ If hLibrary
   
   Define Context.i = ZmqCtxNew(hLibrary)
   Define Socket.i = ZmqSocket(hLibrary, Context, #ZMQ_REP)
+   
   Define Rc.i = ZmqBind(hLibrary, Socket, lpszServerAddr)
   
   PrintN("Bind an IP address: " + lpszServerAddr)
@@ -63,7 +64,8 @@ If hLibrary
   ZmqDllClose(hLibrary)
 EndIf
 ; IDE Options = PureBasic 5.72 (Windows - x64)
-; CursorPosition = 11
+; CursorPosition = 33
+; FirstLine = 14
 ; Folding = -
 ; EnableXP
 ; Executable = ..\RepServer.exe

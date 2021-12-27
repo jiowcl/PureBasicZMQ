@@ -27,12 +27,6 @@ Global lpszServerClientAddr.s = "tcp://localhost:1700"
 
 Global hLibrary.i = ZmqDllOpen(lpszLibZmqDll)
 
-; ZmqFreeFnProc
-Procedure ZmqFreeFnProc(vData.i, vHint.i)
-  Debug "vData: " + PeekS(vData, -1, #PB_UTF8)
-  Debug "vHint: " + vHint
-EndProcedure
-
 ; Rep Server
 ProcedureC TestZmqThreadRepProc(vData.i)
   Protected.i Socket = vData
@@ -40,26 +34,67 @@ ProcedureC TestZmqThreadRepProc(vData.i)
   PrintN("Bind an IP address: " + lpszServerAddr)
   
   While 1    
-    Define vMsgRecv.ZmqMsgT
-    Define vMsgSend.ZmqMsgT
+    Define *lpszBuffer = AllocateMemory(32)
+    Define lpszMessage.s = "Hi "
     
-    ZmqMsgInit(hLibrary, vMsgRecv)
-    ZmqMsgInit(hLibrary, vMsgSend)
-    ZmqMsgInitSize(hLibrary, vMsgSend, 32)
-    
-    PokeS(ZmqMsgData(hLibrary, vMsgSend), "Hi ", -1, #PB_UTF8)
-    
-    ZmqMsgRecv(hLibrary, vMsgRecv, Socket, 0)
+    ZmqRecv(hLibrary, Socket, *lpszBuffer, MemorySize(*lpszBuffer), 0)
     
     Delay(10)
     
     PrintN("Received: ")
-    PrintN( PeekS(ZmqMsgData(hLibrary, vMsgRecv), -1, #PB_UTF8) )
+    PrintN( PeekS(*lpszBuffer, -1, #PB_UTF8) )
     
-    ZmqMsgSend(hLibrary, vMsgSend, Socket, 0)
+    ZmqSend(hLibrary, Socket, lpszMessage, Len(lpszMessage), 0)
+       
+    FreeMemory(*lpszBuffer)
+  Wend
+EndProcedure  
+
+; Rep Server Monitor
+ProcedureC TestZmqThreadRepMonitorProc(vData.i)
+  Protected.i Socket = vData
+  Protected.i i
+  
+  PrintN("Connect to Monitor Server: " + lpszServerAddr)
+  
+  While 1
+    Define vMsgRecv1.ZmqMsgT
+    Define vMsgRecv2.ZmqMsgT
+    Define vRecv.i
     
-    ZmqMsgClose(hLibrary, vMsgRecv)
-    ZmqMsgClose(hLibrary, vMsgSend)
+    ZmqMsgInit(hLibrary, vMsgRecv1)
+    ZmqMsgInit(hLibrary, vMsgRecv2)
+    
+    vRecv = ZmqMsgRecv(hLibrary, vMsgRecv1, Socket, 0)
+    
+    If vRecv = -1 Or ZmqErrno(hLibrary) = #ETERM
+      Continue
+    EndIf
+    
+    vRecv = ZmqMsgRecv(hLibrary, vMsgRecv2, Socket, 0)
+    
+    If vRecv = -1 Or ZmqErrno(hLibrary) = #ETERM
+      Continue
+    EndIf
+    
+    Define recvData.c = PeekC(ZmqMsgData(hLibrary, vMsgRecv1))
+    Define eventId.i = recvData
+    Define eventValue.i = PeekC(ZmqMsgData(hLibrary, vMsgRecv1)+SizeOf(recvData))
+    Define address.s = PeekS(ZmqMsgData(hLibrary, vMsgRecv2), -1, #PB_UTF8)
+    
+    Select eventId
+      Case #ZMQ_EVENT_ACCEPTED
+        PrintN("Event #ZMQ_EVENT_ACCEPTED")
+        PrintN("Event Value: " + eventValue)
+        PrintN("Address: " + address)
+      Case #ZMQ_EVENT_CLOSED
+        PrintN("Event #ZMQ_EVENT_CLOSED")
+        PrintN("Event Value: " + eventValue)
+        PrintN("Address: " + address)
+    EndSelect
+           
+    ZmqMsgClose(hLibrary, vMsgRecv1)
+    ZmqMsgClose(hLibrary, vMsgRecv2)
   Wend
 EndProcedure  
 
@@ -71,26 +106,19 @@ ProcedureC TestZmqThreadReqProc(vData.i)
   PrintN("Connect to Server: " + lpszServerAddr)
   
   For i = 0 To 20
-    Define vMsgRecv.ZmqMsgT
-    Define vMsgSend.ZmqMsgT
+    Define *lpszBuffer = AllocateMemory(32)
+    Define lpszMessage.s = "From Client"
     
-    ZmqMsgInit(hLibrary, vMsgRecv)
-    ZmqMsgInit(hLibrary, vMsgSend)
-    ZmqMsgInitSize(hLibrary, vMsgSend, 32)
-    
-    PokeS(ZmqMsgData(hLibrary, vMsgSend), "From Client", -1, #PB_UTF8)
-    
-    ZmqMsgSend(hLibrary, vMsgSend, Socket, 0)
+    ZmqSend(hLibrary, Socket, lpszMessage, Len(lpszMessage), 0)
     
     Delay(100)
     
-    ZmqMsgRecv(hLibrary, vMsgRecv, Socket, 0)
+    ZmqRecv(hLibrary, Socket, *lpszBuffer, MemorySize(*lpszBuffer), 0)
     
     PrintN("Reply From Server: ")
-    PrintN( PeekS(ZmqMsgData(hLibrary, vMsgRecv), -1, #PB_UTF8) )
+    PrintN( PeekS(*lpszBuffer, -1, #PB_UTF8) )
     
-    ZmqMsgClose(hLibrary, vMsgRecv)
-    ZmqMsgClose(hLibrary, vMsgSend)
+    FreeMemory(*lpszBuffer)
   Next
 EndProcedure  
 
@@ -99,18 +127,24 @@ If hLibrary
   
   Define ContextRep.i = ZmqCtxNew(hLibrary)
   Define SocketRep.i = ZmqSocket(hLibrary, ContextRep, #ZMQ_REP)
+  Define SocketRepMonitor = ZmqSocketMonitor(hLibrary, SocketRep, "inproc://monitor.rep", #ZMQ_EVENT_ACCEPTED + #ZMQ_EVENT_CLOSED)
   Define RcRep.i = ZmqBind(hLibrary, SocketRep, lpszServerAddr)
+  
+  Define SocketMonitor.i = ZmqSocket(hLibrary, ContextRep, #ZMQ_PAIR)
+  Define RcReqMonitor.i = ZmqConnect(hLibrary, SocketMonitor, "inproc://monitor.rep")
+  Define threadMonitor.i = ZmqThreadstart(hLibrary, @TestZmqThreadRepMonitorProc(), SocketMonitor)
   
   Define ContextReq.i = ZmqCtxNew(hLibrary)
   Define SocketReq.i = ZmqSocket(hLibrary, ContextReq, #ZMQ_REQ)
   Define RcReq.i = ZmqConnect(hLibrary, SocketReq, lpszServerClientAddr)
-    
+  
   Define threadRep.i = ZmqThreadstart(hLibrary, @TestZmqThreadRepProc(), SocketRep)
   Define threadReq.i = ZmqThreadstart(hLibrary, @TestZmqThreadReqProc(), SocketReq)
   
   Input()
   CloseConsole()
   
+  ZmqThreadclose(hLibrary, threadMonitor)
   ZmqThreadclose(hLibrary, threadRep)
   ZmqThreadclose(hLibrary, threadReq)
   
@@ -120,14 +154,16 @@ If hLibrary
   ZmqClose(hLibrary, SocketReq)
   ZmqCtxShutdown(hLibrary, ContextReq)
   
+  ZmqClose(hLibrary, SocketMonitor)
+  
   ZmqDllClose(hLibrary)
 EndIf
 ; IDE Options = PureBasic 5.72 (Windows - x64)
-; CursorPosition = 78
-; FirstLine = 31
+; CursorPosition = 47
+; FirstLine = 104
 ; Folding = -
 ; EnableXP
-; Executable = ..\Msg.exe
+; Executable = ..\Mointor.exe
 ; CurrentDirectory = ../
 ; IncludeVersionInfo
 ; VersionField2 = Inwazy Technology

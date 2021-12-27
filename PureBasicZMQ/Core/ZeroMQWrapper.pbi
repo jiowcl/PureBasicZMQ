@@ -15,6 +15,13 @@ DeclareModule ZeroMQWrapper
   Declare.i DllClose()
 EndDeclareModule
 
+; Declare Module ZmqRuntime
+DeclareModule ZmqRuntime 
+  Declare.i Errno()
+  Declare.s Strerror(errnum.i)
+  Declare Version(*major.Integer, *minor.Integer, *patch.Integer)
+EndDeclareModule
+
 ; Declare Module ZmqContext
 DeclareModule ZmqContext
   Declare.i New()
@@ -27,6 +34,7 @@ EndDeclareModule
 ; Declare Module ZmqSocket
 DeclareModule ZmqSocket
   Declare.i Socket(s.i, type.i)
+  Declare.i SocketMonitor(socket.i, addr.s, events.i)
   Declare.i Bind(socket.i, addr.s)
   Declare.i UnBind(socket.i, addr.s)
   Declare.i Recv(socket.i, *buf, len.i, flags.i)
@@ -100,6 +108,39 @@ Module ZeroMQWrapper
   EndProcedure
 EndModule
 
+; Module ZmqRuntime
+Module ZmqRuntime
+  IncludeFile "Runtime.pbi"
+  
+  ; <summary>
+  ; Errno
+  ; </summary>
+  ; <returns>Returns integer.</returns>
+  Procedure.i Errno()
+    ProcedureReturn ZmqErrno(ZeroMQWrapper::dllInstance)
+  EndProcedure
+  
+  ; <summary>
+  ; Strerror
+  ; </summary>
+  ; <param name="errnum"></param>
+  ; <returns>Returns string.</returns>
+  Procedure.s Strerror(errnum.i)
+    ProcedureReturn ZmqStrerror(ZeroMQWrapper::dllInstance, errnum)
+  EndProcedure
+  
+  ; <summary>
+  ; Version
+  ; </summary>
+  ; <param name="major"></param>
+  ; <param name="minor"></param>
+  ; <param name="patch"></param>
+  ; <returns>Returns void.</returns>
+  Procedure Version(*major.Integer, *minor.Integer, *patch.Integer)
+    ZmqVersion(ZeroMQWrapper::dllInstance, *major, *minor, *patch)
+  EndProcedure
+EndModule  
+
 ; Module ZmqContext
 Module ZmqContext
   IncludeFile "Context.pbi"
@@ -168,6 +209,17 @@ Module ZmqSocket
   ; <returns>Returns integer.</returns>
   Procedure.i Socket(s.i, type.i)
     ProcedureReturn ZmqSocket(ZeroMQWrapper::dllInstance, s, type)
+  EndProcedure
+  
+  ; <summary>
+  ; SocketMonitor
+  ; </summary>
+  ; <param name="socket"></param>
+  ; <param name="addr"></param>
+  ; <param name="events"></param>
+  ; <returns>Returns integer.</returns>
+  Procedure.i SocketMonitor(socket.i, addr.s, events.i)
+    ProcedureReturn ZmqSocketMonitor(ZeroMQWrapper::dllInstance, socket, addr, events)
   EndProcedure
   
   ; <summary>
@@ -490,9 +542,9 @@ Module ZmqHelper
   EndProcedure
 EndModule  
 ; IDE Options = PureBasic 5.72 (Windows - x64)
-; CursorPosition = 57
-; FirstLine = 27
-; Folding = ---------
+; CursorPosition = 20
+; FirstLine = 12
+; Folding = ----------
 ; EnableXP
 ; IncludeVersionInfo
 ; VersionField2 = Inwazy Technology
