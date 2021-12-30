@@ -3,6 +3,7 @@
 ZMQ Wrapper for PureBasic Programming Language.
 
 ![GitHub](https://img.shields.io/github/license/jiowcl/PureBasicZMQ.svg)
+![PureBasic](https://img.shields.io/badge/language-PureBasic-blue.svg)
 
 ## Environment
 
