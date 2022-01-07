@@ -3,6 +3,11 @@
 ;  Code released under the MIT license.
 ;--------------------------------------------------------------------------------------------
 
+; Version Macros for Compile-time API Version Detection 
+#ZMQ_VERSION_MAJOR = 4
+#ZMQ_VERSION_MINOR = 3
+#ZMQ_VERSION_PATCH = 4
+
 ; Socket Types
 #ZMQ_PAIR   = 0
 #ZMQ_PUB    = 1
@@ -225,8 +230,7 @@ EndStructure
 PrototypeC ZmqThreadFnProc(vData.i)
 PrototypeC ZmqFreeFnProc(vData.i, vHint.i)
 ; IDE Options = PureBasic 5.72 (Windows - x64)
-; CursorPosition = 215
-; FirstLine = 171
+; CursorPosition = 5
 ; Folding = ----
 ; EnableXP
 ; IncludeVersionInfo
