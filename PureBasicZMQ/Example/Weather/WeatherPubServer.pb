@@ -31,8 +31,7 @@ Global lpszJsonWeather.s = ""
 
 If DllOpen(lpszLibZmqDll)
   OpenConsole()
-  InitNetwork()
-  
+    
   Print("Enter OpenWeatherMap API Key and Press Return: ")
   Define WeatherApiKey.s = Input()
   
@@ -79,8 +78,9 @@ If DllOpen(lpszLibZmqDll)
   
   DllClose()
 EndIf
-; IDE Options = PureBasic 5.72 (Windows - x64)
-; CursorPosition = 14
+; IDE Options = PureBasic 6.12 LTS (Windows - x64)
+; CursorPosition = 33
+; FirstLine = 14
 ; Folding = -
 ; EnableXP
 ; Executable = ..\..\ModuleWeatherPubServer.exe
