@@ -158,9 +158,8 @@ If hLibrary
   
   ZmqDllClose(hLibrary)
 EndIf
-; IDE Options = PureBasic 5.72 (Windows - x64)
-; CursorPosition = 47
-; FirstLine = 104
+; IDE Options = PureBasic 6.12 LTS (Windows - x64)
+; CursorPosition = 14
 ; Folding = -
 ; EnableXP
 ; Executable = ..\Mointor.exe
