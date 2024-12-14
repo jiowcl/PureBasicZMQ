@@ -38,7 +38,7 @@ DeclareModule ZmqSocket
   Declare.i Bind(socket.i, addr.s)
   Declare.i UnBind(socket.i, addr.s)
   Declare.i Recv(socket.i, *buf, len.i, flags.i)
-  Declare.i Send(socket.i, buf.s, leng.i, flags.i)
+  Declare.i Send(socket.i, buf.s, len.i, flags.i)
   Declare.i Connect(socket.i, addr.s)
   Declare.i DisConnect(socket.i, addr.s)
   Declare.i Setsockopt(socket.i, option.i, optval.s, optvallen.i)
